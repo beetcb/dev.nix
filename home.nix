@@ -59,7 +59,7 @@ in
     rustc
     cargo
     rustfmt
-    solaar
+    pngquant
   ];
 
   home.file = {
@@ -71,8 +71,6 @@ in
 
   home.shellAliases = {
     g = "git";
-    vim = "nvim";
-    gcom = "git commit";
   };
 
   home.stateVersion = "21.11";
