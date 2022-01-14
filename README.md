@@ -6,6 +6,8 @@ My daily development environment, running on VMware workstation Player, Windows 
 
 ![screenshot](./screenshot.png)
 
+> Background image source: https://unsplash.com/photos/5Lw1U5BIumE
+
 ## Install NixOS
 
 1. Follow the [manual](https://nixos.org/manual/nixos/stable/index.html) installation guide
