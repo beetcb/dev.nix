@@ -23,7 +23,7 @@ My daily development environment, running on VMware workstation Player, Windows 
 
 ## Nix Flake installation
 
-    [FlakeGuide](https://nixos.wiki/wiki/Flakes)
+[Flake Guide](https://nixos.wiki/wiki/Flakes)
 
 ## Run `sudo nixos-rebuild --flake ".#hostname"`
 
