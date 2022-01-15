@@ -60,6 +60,7 @@ in
     cargo
     rustfmt
     pngquant
+    google-chrome
   ];
 
   home.file = {
