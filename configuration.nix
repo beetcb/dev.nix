@@ -125,9 +125,10 @@
     polkit
     git
     gnupg
-    vimHugeX
     neovim
+    xclip
     unzip
+    zip
     wget
     xorg.xdpyinfo
     nixpkgs-fmt
@@ -146,9 +147,9 @@
   # users
   users.users = {
     beet = {
-      initialPassword = "init";
+      initialPassword = "1111";
       isNormalUser = true;
-      group = "users";
+      group = "docker";
       extraGroups = [
         "wheel"
       ];

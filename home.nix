@@ -61,6 +61,9 @@ in
     rustfmt
     pngquant
     google-chrome
+    xsel
+    qrcp
+    du-dust
   ];
 
   home.file = {
@@ -72,6 +75,9 @@ in
 
   home.shellAliases = {
     g = "git";
+    sys-rebuild-flake = "sudo nixos-rebuild switch --flake '/home/beet/dot#be'";
+    v = "nvim";
+    vmshare = "vmhgfs-fuse .host:/ /mnt/";
   };
 
   home.stateVersion = "21.11";
