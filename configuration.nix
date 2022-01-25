@@ -93,7 +93,7 @@
     openssh = {
       enable = true;
     };
-    gnome = { 
+    gnome = {
       gnome-keyring = {
         enable = true;
       };

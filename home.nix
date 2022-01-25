@@ -64,6 +64,7 @@ in
     xsel
     qrcp
     du-dust
+    pkg-config openssl
   ];
 
   home.file = {
@@ -72,6 +73,8 @@ in
       recursive = true;
     };
   };
+
+  xsession = { enable = true; };
 
   home.shellAliases = {
     g = "git";
@@ -82,8 +85,12 @@ in
   };
 
   home.sessionPath = [
-    "$HOME/.cargo/bin" 
+    "$HOME/.cargo/bin"
   ];
+
+  home.sessionVariables = {
+    RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
+  };
 
   home.stateVersion = "21.11";
 }
