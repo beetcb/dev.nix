@@ -75,10 +75,15 @@ in
 
   home.shellAliases = {
     g = "git";
-    sys-rebuild-flake = "sudo nixos-rebuild switch --flake '/home/beet/dot#be'";
     v = "nvim";
+    vim = "nvim";
     vmshare = "vmhgfs-fuse .host:/ /mnt/";
+    sys-rebuild-flake = "sudo nixos-rebuild switch --flake '/home/beet/dot#be'";
   };
+
+  home.sessionPath = [
+    "$HOME/.cargo/bin" 
+  ];
 
   home.stateVersion = "21.11";
 }
