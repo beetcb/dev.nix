@@ -59,18 +59,45 @@ in
     rustc
     cargo
     rustfmt
+    pkg-config
+    openssl
     pngquant
     google-chrome
     xsel
     qrcp
     du-dust
-    pkg-config openssl
   ];
 
   home.file = {
     ".config/leftwm" = {
       source = ./wm;
       recursive = true;
+    };
+    ".bina/bin/bina" = {
+      executable = true;
+      text = ''
+        #!/usr/bin/env sh
+        npx --yes bina -d "$HOME/.bina/bin" "$@"
+      '';
+    };
+    "repo/shell.rs.nix" = {
+      text = ''
+        let
+          pkgs = import <nixpkgs> {};
+        in pkgs.mkShell {
+          buildInputs = [
+            pkgs.cargo
+            pkgs.rustc
+            pkgs.rustfmt
+
+            # Necessary for the openssl-sys crate:
+            pkgs.openssl
+            pkgs.pkg-config
+          ];
+
+          RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
+        }
+      '';
     };
   };
 
@@ -86,6 +113,7 @@ in
 
   home.sessionPath = [
     "$HOME/.cargo/bin"
+    "$HOME/.bina/bin"
   ];
 
   home.sessionVariables = {
