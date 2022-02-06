@@ -129,6 +129,7 @@
     xclip
     unzip
     zip
+    ffmpeg
     wget
     xorg.xdpyinfo
     nixpkgs-fmt

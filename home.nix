@@ -73,6 +73,12 @@ in
       source = ./wm;
       recursive = true;
     };
+    ".config/rustfmt/rustfmt.toml" = {
+      text = ''
+      max_width = 60 
+      tab_spaces = 2 
+      '';
+    };
     ".bina/bin/bina" = {
       executable = true;
       text = ''
@@ -114,6 +120,7 @@ in
   home.sessionPath = [
     "$HOME/.cargo/bin"
     "$HOME/.bina/bin"
+    "$HOME/go/bin"
   ];
 
   home.sessionVariables = {
