@@ -2,14 +2,16 @@
 
 let
   enablePkgs = { ... } @ args: builtins.mapAttrs (n: v: v // { enable = true; }) args;
+  user = "beet";
+  home = "/home/${user}";
 in
 {
-  home.username = "beet";
-  home.homeDirectory = "/home/beet";
+  home.username = user;
+  home.homeDirectory = home;
 
   programs = enablePkgs {
     git = {
-      userName = "beet";
+      userName = user;
       userEmail = "63141491+beetcb@users.noreply.github.com";
       signing = {
         key = "A577D88811B9B09A";
@@ -47,6 +49,10 @@ in
         };
       };
     };
+    vscode = { 
+      extensions = [
+      ];
+    };
     bash = { };
     starship = { };
 
@@ -59,8 +65,6 @@ in
     rustc
     cargo
     rustfmt
-    pkg-config
-    openssl
     pngquant
     google-chrome
     xsel
@@ -69,6 +73,12 @@ in
   ];
 
   home.file = {
+    ".npmrc" = {
+      text = ''
+      prefix=${home}/.local
+      cache=${home}/.local/share/npm
+      '';
+    };
     ".config/leftwm" = {
       source = ./wm;
       recursive = true;
@@ -76,14 +86,6 @@ in
     ".config/rustfmt/rustfmt.toml" = {
       text = ''
       max_width = 60 
-      tab_spaces = 2 
-      '';
-    };
-    ".bina/bin/bina" = {
-      executable = true;
-      text = ''
-        #!/usr/bin/env sh
-        npx --yes bina -d "$HOME/.bina/bin" "$@"
       '';
     };
     "repo/shell.rs.nix" = {
@@ -95,8 +97,7 @@ in
             pkgs.cargo
             pkgs.rustc
             pkgs.rustfmt
-
-            # Necessary for the openssl-sys crate:
+            # Necessary for the openssl-sys crate 
             pkgs.openssl
             pkgs.pkg-config
           ];
@@ -112,19 +113,26 @@ in
   home.shellAliases = {
     g = "git";
     v = "nvim";
+    l = "exa -a";
+    ls = "exa";
+    ll = "exa -l";
+    cat = "bat";
     vim = "nvim";
     vmshare = "vmhgfs-fuse .host:/ /mnt/";
-    sys-rebuild-flake = "sudo nixos-rebuild switch --flake '/home/beet/dot#be'";
+    sys-rebuild-flake = "sudo nixos-rebuild switch --flake '${home}/dot#be'";
   };
 
   home.sessionPath = [
     "$HOME/.cargo/bin"
-    "$HOME/.bina/bin"
     "$HOME/go/bin"
+    "$HOME/.local/bin"
   ];
 
   home.sessionVariables = {
-    RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
+    # Set XDG Base Directory
+    XDG_DATA_HOME = "$HOME/.local/share";
+    XDG_CONFIG_HOME = "$HOME/.config";
+    XDG_STATE_HOME = "$HOME/.local/state";
   };
 
   home.stateVersion = "21.11";
