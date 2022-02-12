@@ -121,7 +121,6 @@
     picom
     dunst
     alacritty
-    vscode
     polkit
     git
     gnupg
