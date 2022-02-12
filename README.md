@@ -36,3 +36,9 @@ My daily development environment, running on VMware workstation Player, Windows 
 2. SSH
 
 3. ...
+
+# Nix/NixOS Gotchas
+
+> Bellow is a list of gotchas I've encountered with nix, record them as a reminder.
+
+- [Installed sys lib not found by build tools?](https://nixos.wiki/wiki/FAQ/I_installed_a_library_but_my_compiler_is_not_finding_it._Why%3F)
