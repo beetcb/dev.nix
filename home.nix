@@ -75,6 +75,7 @@ in
   home.file = {
     ".npmrc" = {
       text = ''
+      //registry.npmjs.org/:_authToken=${NPM_TOKEN}
       prefix=${home}/.local
       cache=${home}/.local/share/npm
       '';
