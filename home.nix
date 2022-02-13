@@ -1,7 +1,8 @@
 { config, pkgs, ... }:
+with builtins;
 
 let
-  enablePkgs = { ... } @ args: builtins.mapAttrs (n: v: v // { enable = true; }) args;
+  enablePkgs = { ... } @ args: mapAttrs (n: v: v // { enable = true; }) args;
   user = "beet";
   home = "/home/${user}";
 in
@@ -120,7 +121,7 @@ in
     cat = "bat";
     vim = "nvim";
     vmshare = "vmhgfs-fuse .host:/ /mnt/";
-    sys-rebuild-flake = "sudo nixos-rebuild switch --flake '${home}/dot#be'";
+    sys-rebuild-flake = "sudo nixos-rebuild switch --flake ${getEnv "HOME"}/dot#be";
   };
 
   home.sessionPath = [
