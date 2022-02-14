@@ -121,7 +121,7 @@ in
     cat = "bat";
     vim = "nvim";
     vmshare = "vmhgfs-fuse .host:/ /mnt/";
-    sys-rebuild-flake = "sudo nixos-rebuild switch --flake ${getEnv "HOME"}/dot#be";
+    sys-rebuild-flake = "sudo nixos-rebuild switch --flake ${home}/dot#be";
   };
 
   home.sessionPath = [
