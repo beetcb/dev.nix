@@ -125,6 +125,7 @@
     git
     gnupg
     neovim
+    google-chrome 
     xclip
     unzip
     zip

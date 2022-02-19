@@ -67,7 +67,7 @@ in
     cargo
     rustfmt
     pngquant
-    google-chrome
+    vscode
     xsel
     qrcp
     du-dust
