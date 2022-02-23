@@ -66,6 +66,7 @@ in
     rustc
     cargo
     rustfmt
+    dprint
     pngquant
     vscode
     xsel
