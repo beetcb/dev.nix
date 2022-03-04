@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, unstablePkgs, ... }:
 with builtins;
 
 let
@@ -50,26 +50,22 @@ in
         };
       };
     };
-    vscode = { 
-      extensions = [
-      ];
-    };
     bash = { };
     starship = { };
 
     home-manager = { };
   };
 
-  home.packages = with pkgs; [
+  home.packages = with unstablePkgs; [
     ripgrep
     nodejs-16_x
-    rustc
-    cargo
-    rustfmt
     dprint
     pngquant
     vscode
     xsel
+    rustc
+    cargo
+    rustfmt
     qrcp
     du-dust
   ];
@@ -77,9 +73,9 @@ in
   home.file = {
     ".npmrc" = {
       text = ''
-      //registry.npmjs.org/:_authToken=''\${NPM_TOKEN}
-      prefix=${home}/.local
-      cache=${home}/.local/share/npm
+        //registry.npmjs.org/:_authToken=''\${NPM_TOKEN}
+        prefix=${home}/.local
+        cache=${home}/.local/share/npm
       '';
     };
     ".config/leftwm" = {
@@ -88,13 +84,13 @@ in
     };
     ".config/rustfmt/rustfmt.toml" = {
       text = ''
-      max_width = 60 
+        max_width = 60 
       '';
     };
     "repo/shell.rs.nix" = {
       text = ''
         let
-          pkgs = import <nixpkgs> {};
+          pkgs = import <nixos-unstable> {};
         in pkgs.mkShell {
           buildInputs = [
             pkgs.cargo

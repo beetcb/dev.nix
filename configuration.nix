@@ -122,10 +122,9 @@
     dunst
     alacritty
     polkit
-    git
     gnupg
     neovim
-    google-chrome 
+    google-chrome
     xclip
     unzip
     zip
