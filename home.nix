@@ -63,10 +63,6 @@ in
     pngquant
     vscode
     xsel
-    rustc
-    cargo
-    go
-    rustfmt
     qrcp
     du-dust
   ];
