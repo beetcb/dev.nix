@@ -33,6 +33,7 @@
   networking.hostName = "be";
   networking.useDHCP = false;
   networking.interfaces.ens33.useDHCP = true;
+  networking.firewall.allowedTCPPorts = [ 3000 1234 ];
 
   # desk
   fonts = {
