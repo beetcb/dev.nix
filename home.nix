@@ -46,7 +46,7 @@ in
         };
         background_opacity = 0.7;
         font = {
-          size = 25;
+          size = 30;
         };
       };
     };
@@ -129,6 +129,9 @@ in
     XDG_DATA_HOME = "$HOME/.local/share";
     XDG_CONFIG_HOME = "$HOME/.config";
     XDG_STATE_HOME = "$HOME/.local/state";
+
+    # NPM
+    NPM_TOKEN = "fake palceholder";
   };
 
   home.stateVersion = "21.11";

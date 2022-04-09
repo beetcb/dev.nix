@@ -125,7 +125,7 @@
     polkit
     gnupg
     neovim
-    google-chrome
+    chromium
     xclip
     unzip
     zip
