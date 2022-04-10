@@ -90,6 +90,12 @@
         };
       };
       dpi = 192;
+      resolutions = [
+	  {
+	    x = 2736;
+	    y = 1824;
+	  }
+      ];
     };
     openssh = {
       enable = true;
