@@ -2,14 +2,15 @@
   description = "beet's home";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
-    nixos-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixos.url = "github:NixOS/nixpkgs/nixos-21.11";
+    nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    home-manager.inputs.nixpkgs.follows = "nixos";
   };
 
-  outputs = { home-manager, nixpkgs, nixos-unstable, ... }: {
+  outputs = { home-manager, nixos, nixos-unstable, ... }: {
     nixosConfigurations = {
-      be = nixpkgs.lib.nixosSystem rec{
+      be = nixos.lib.nixosSystem rec {
         system = "x86_64-linux";
         modules = [
           ./configuration.nix
@@ -17,7 +18,7 @@
           ({ ... }: {
             home-manager.users.beet.config = {
               _module.args.unstablePkgs = import nixos-unstable {
-                inherit system;
+	        inherit system;
                 config = { allowUnfree = true; };
               };
             };
