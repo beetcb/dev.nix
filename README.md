@@ -1,4 +1,4 @@
-# Reproduce Steps
+# My Reproducable Dev Environment using NixOS
 
 ## Local Environment Info
 
@@ -21,9 +21,8 @@ My daily development environment, running on VMware workstation Player, Windows 
         ```nix
         virtualisation.vmware.guest.enable = true;
         ```
-        b. hiDPI settings
-
-        See [nixos wiki: Xorg](https://nixos.wiki/wiki/Xorg)
+            
+        b. [hiDPI settings](https://nixos.wiki/wiki/Xorg)
         
         c. [install nix flakes](https://nixos.wiki/wiki/Flakes)
         
