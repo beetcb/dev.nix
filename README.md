@@ -10,32 +10,41 @@ My daily development environment, running on VMware workstation Player, Windows 
 
 ## Install NixOS
 
-1. Follow the [manual](https://nixos.org/manual/nixos/stable/index.html) installation guide
+- Without flakes
 
-2. Post installation
+    1. Follow the [manual](https://nixos.org/manual/nixos/stable/index.html) installation guide
 
-    a. enable vmware-tools
+    2. Post installation
 
+        a. enable vmware-tools
+
+        ```nix
+        virtualisation.vmware.guest.enable = true;
+        ```
+        b. hiDPI settings
+
+        See [nixos wiki: Xorg](https://nixos.wiki/wiki/Xorg)
+        
+        c. [install nix flakes](https://nixos.wiki/wiki/Flakes)
+        
+        d. rebuild whole system with `sudo nixos-rebuild --flake "dot#be"`
+        
+        e. GUNPG | SSH
+        
+- With flakes
+  
+  Follow the [manual](https://nixos.org/manual/nixos/stable/index.html) installation guide, replace 2.3.5 command with the following
+  
     ```nix
-    virtualisation.vmware.guest.enable = true;
+    # enter a shell env(with nix flakes installed)
+    nix-shell -p nixFlakes git
+    # clone dot repo using git
+    git clone https://github.com/beetcb/dot.git /mnt/etc/nixos/dot
+    # replace hardware configruation with newly generated one
+    cp /mnt/etc/nixos/hardware-configuration.nix /mnt/etc/nixos/dot/sp-hardware.nix
+    # finally, install nixos
+    nixos-install --impure --flake /mnt/etc/nixos/dot#be
     ```
-    b. hiDPI settings
-
-    See [nixos wiki: Xorg](https://nixos.wiki/wiki/Xorg)
-
-## Nix Flake installation
-
-[Flake Guide](https://nixos.wiki/wiki/Flakes)
-
-## Run `sudo nixos-rebuild --flake ".#hostname"`
-
-## Post configuration
-
-1. GNUPG
-
-2. SSH
-
-3. ...
 
 # Nix/NixOS Gotchas
 
