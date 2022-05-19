@@ -45,11 +45,16 @@ My daily development environment, running on VMware workstation Player, Windows 
     nixos-install --impure --flake /mnt/etc/nixos/dot#be
     ```
 
-# Nix/NixOS Gotchas
+# Nix/NixOS/VM Gotchas
 
 > Bellow is a list of gotchas I've encountered with nix, record them as a reminder.
 
 - [Installed sys lib not found by build tools?](https://nixos.wiki/wiki/FAQ/I_installed_a_library_but_my_compiler_is_not_finding_it._Why%3F)
+- [Do port forwarding from localhost to vmhost](https://linuxize.com/post/how-to-setup-ssh-tunneling/)
+- Defragmenting and shrinking VM disk
+
+    1. [Disable 3D acceleration temporarily](https://communities.vmware.com/t5/VMware-Workstation-Pro/ISBRendererComm-Lost-connection-to-mksSandbox-and-MKS/td-p/2838888), weird bug on vmware workstation.
+    2. [Defragmenting and shrinking on guest machine](https://superuser.com/a/1116213)
 
 # Channels
 
