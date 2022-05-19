@@ -47,7 +47,7 @@ My daily development environment, running on VMware workstation Player, Windows 
 
 # Nix/NixOS/VM Gotchas
 
-> Bellow is a list of gotchas I've encountered with nix, record them as a reminder.
+> Bellow is a list of gotchas I've encountered, record them as a reminder.
 
 - [Installed sys lib not found by build tools?](https://nixos.wiki/wiki/FAQ/I_installed_a_library_but_my_compiler_is_not_finding_it._Why%3F)
 - [Do port forwarding from localhost to vmhost](https://linuxize.com/post/how-to-setup-ssh-tunneling/)
@@ -55,8 +55,24 @@ My daily development environment, running on VMware workstation Player, Windows 
 
     1. [Disable 3D acceleration temporarily](https://communities.vmware.com/t5/VMware-Workstation-Pro/ISBRendererComm-Lost-connection-to-mksSandbox-and-MKS/td-p/2838888), weird bug on vmware workstation.
     2. [Defragmenting and shrinking on guest machine](https://superuser.com/a/1116213)
-
-# Channels
+- OS management helper scripts
+    ```bash
+    home.shellAliases = {
+      vmshare = "vmhgfs-fuse .host:/ /mnt/";
+      os-rebuild = "sudo nixos-rebuild switch --flake ${os}#be";
+      os-update = ''
+        cd ${os} &&
+        nix flake update &&
+        os-rebuild
+      '';
+      os-cleanup = ''
+        sudo rm -f /nix/var/nix/gcroots/auto/* &&
+        nix-collect-garbage -d &&
+        sudo nix-collect-garbage -d &&
+        os-rebuild
+      '';
+    };
+    ```
 
 - For system pkgs: nixos latest statble channel
 - For user pkgs: mixin of nixos latest unstatble & statble channel

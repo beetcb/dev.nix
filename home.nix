@@ -5,6 +5,7 @@ let
   enablePkgs = { ... } @ args: mapAttrs (n: v: v // { enable = true; }) args;
   user = "beet";
   home = "/home/${user}";
+  os = "${home}/dot";
 in
 {
   home.username = user;
@@ -25,9 +26,9 @@ in
         pull = {
           rebase = false;
         };
-	safe = {
-	  directory = "${home}/dot";
-	};
+	      safe = {
+	        directory = os;
+	      };
       };
     };
     bat = {
@@ -119,7 +120,12 @@ in
     cat = "bat";
     vim = "nvim";
     vmshare = "vmhgfs-fuse .host:/ /mnt/";
-    os-rebuild = "sudo nixos-rebuild switch --flake ${home}/dot#be";
+    os-rebuild = "sudo nixos-rebuild switch --flake ${os}#be";
+    os-update = ''
+      cd ${os} &&
+      nix flake update &&
+      os-rebuild
+    '';
     os-cleanup = ''
       sudo rm -f /nix/var/nix/gcroots/auto/* &&
       nix-collect-garbage -d &&
