@@ -2,7 +2,7 @@
   description = "beet's home";
 
   inputs = {
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:nix-community/home-manager/release-21.11";
     nixos.url = "github:NixOS/nixpkgs/nixos-21.11";
     nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager.inputs.nixpkgs.follows = "nixos";

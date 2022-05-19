@@ -25,6 +25,9 @@ in
         pull = {
           rebase = false;
         };
+	safe = {
+	  directory = "${home}/dot";
+	};
       };
     };
     bat = {
@@ -64,6 +67,7 @@ in
     vscode
     xsel
     qrcp
+    yarn
     du-dust
   ];
 
@@ -115,7 +119,13 @@ in
     cat = "bat";
     vim = "nvim";
     vmshare = "vmhgfs-fuse .host:/ /mnt/";
-    sys-rebuild-flake = "sudo nixos-rebuild switch --flake ${home}/dot#be";
+    os-rebuild = "sudo nixos-rebuild switch --flake ${home}/dot#be";
+    os-cleanup = ''
+      sudo rm -f /nix/var/nix/gcroots/auto/* &&
+      nix-collect-garbage -d &&
+      sudo nix-collect-garbage -d &&
+      os-rebuild
+    '';
   };
 
   home.sessionPath = [
