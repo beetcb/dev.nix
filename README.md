@@ -73,6 +73,6 @@ My daily development environment, running on VMware workstation Player, Windows 
       '';
     };
     ```
-
+# Channels
 - For system pkgs: nixos latest statble channel
 - For user pkgs: mixin of nixos latest unstatble & statble channel
