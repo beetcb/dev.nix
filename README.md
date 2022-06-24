@@ -73,6 +73,13 @@ My daily development environment, running on VMware workstation Player, Windows 
       '';
     };
     ```
+- Fix `node-gyp` build
+    ```bash
+    npm i -g node2nix
+    node2nix
+    nix-shell -A shell
+    npm i
+    ```
 # Channels
 - For system pkgs: nixos latest statble channel
 - For user pkgs: mixin of nixos latest unstatble & statble channel
