@@ -14,11 +14,7 @@ in
   programs = enablePkgs {
     git = {
       userName = user;
-      userEmail = "63141491+beetcb@users.noreply.github.com";
-      signing = {
-        key = "A577D88811B9B09A";
-        signByDefault = true;
-      };
+      userEmail = "alexphzhou@tencent.com";
       extraConfig = {
         init = {
           defaultBranch = "main";
@@ -79,10 +75,6 @@ in
         prefix=${home}/.local
         cache=${home}/.local/share/npm
       '';
-    };
-    ".config/leftwm" = {
-      source = ./wm;
-      recursive = true;
     };
     ".config/rustfmt/rustfmt.toml" = {
       text = ''
@@ -151,5 +143,5 @@ in
     NPM_TOKEN = "fake palceholder";
   };
 
-  home.stateVersion = "21.11";
+  home.stateVersion = "22.05";
 }
