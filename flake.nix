@@ -41,7 +41,6 @@
         system = "x86_64-darwin";
         modules = [
           ./configurationm.nix
-          home-manager.darwinModules.home-manager
           # Pass args to home.nix
           ({ ... }: {
             home-manager.users.beet.config = {

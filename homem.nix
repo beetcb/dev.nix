@@ -4,7 +4,7 @@ with builtins;
 let
   enablePkgs = { ... } @ args: mapAttrs (n: v: v // { enable = true; }) args;
   user = "beet";
-  home = "/home/${user}";
+  home = "/Users/${user}";
   os = "${home}/dot";
 in
 {

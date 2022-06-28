@@ -3,7 +3,7 @@
 {
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  nixpkgs.config.allowUnfree = true;
+  config.allowUnfree = true;
   environment.systemPackages =
     with pkgs; [
       vscode
@@ -17,7 +17,8 @@
   users.users = {
     beet = {
       description = "beet's home";
-      home = "/home/beet";
+      home = "/Users/beet";
+      shell = programs.zsh;
     };
   };
 
