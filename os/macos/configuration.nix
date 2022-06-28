@@ -6,14 +6,13 @@
   # mirror
   nix = {
     binaryCaches = [
-      "https://cache.nixos.org/"
-      "https://mirror.sjtu.edu.cn/nix-channels/store"
       "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+      "https://mirror.sjtu.edu.cn/nix-channels/store"
+      "https://cache.nixos.org/"
     ];
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
-    autoOptimiseStore = true;
   };
 
   environment.systemPackages =
