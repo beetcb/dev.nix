@@ -102,7 +102,7 @@ in
     };
   };
 
-  xsession = { enable = true; };
+  # xsession = { enable = true; };
 
   home.shellAliases = {
     g = "git";
@@ -113,7 +113,7 @@ in
     cat = "bat";
     vim = "nvim";
     vmshare = "vmhgfs-fuse .host:/ /mnt/";
-    os-rebuild = "sudo nixos-rebuild switch --flake ${os}#be";
+    os-rebuild = "sudo darwin-rebuild switch --flake ${os}#be";
     os-update = ''
       cd ${os} &&
       nix flake update &&

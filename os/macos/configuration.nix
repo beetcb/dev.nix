@@ -1,9 +1,21 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
-  config.allowUnfree = true;
+  nixpkgs.config.allowUnfree = true;
+
+  # mirror
+  nix = {
+    binaryCaches = [
+      "https://cache.nixos.org/"
+      "https://mirror.sjtu.edu.cn/nix-channels/store"
+      "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+    ];
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+    autoOptimiseStore = true;
+  };
+
   environment.systemPackages =
     with pkgs; [
       vscode
@@ -18,7 +30,7 @@
     beet = {
       description = "beet's home";
       home = "/Users/beet";
-      shell = programs.zsh;
+      shell = pkgs.zsh;
     };
   };
 
