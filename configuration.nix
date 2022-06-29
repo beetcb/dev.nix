@@ -22,7 +22,6 @@
       "https://mirror.sjtu.edu.cn/nix-channels/store"
       "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
     ];
-    package = pkgs.nixUnstable;
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
@@ -91,10 +90,10 @@
       };
       dpi = 192;
       resolutions = [
-	  {
-	    x = 2736;
-	    y = 1824;
-	  }
+        {
+          x = 2736;
+          y = 1824;
+        }
       ];
     };
     openssh = {
@@ -168,5 +167,5 @@
   virtualisation.vmware.guest.enable = true;
   virtualisation.docker.enable = true;
 
-  system.stateVersion = "21.11";
+  system.stateVersion = "22.05";
 }

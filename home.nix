@@ -26,9 +26,9 @@ in
         pull = {
           rebase = false;
         };
-	      safe = {
-	        directory = os;
-	      };
+        safe = {
+          directory = os;
+        };
       };
     };
     bat = {
@@ -47,8 +47,8 @@ in
             x = 8;
             y = 0;
           };
+          opacity = 0.7;
         };
-        background_opacity = 0.7;
         font = {
           size = 30;
         };
@@ -91,21 +91,21 @@ in
     };
     "repo/shell.rs.nix" = {
       text = ''
-        let
-          pkgs = import <nixos-unstable> {};
-        in pkgs.mkShell {
-          buildInputs = [
-            pkgs.cargo
-            pkgs.rustc
-            pkgs.rustfmt
-            # Necessary for the openssl-sys crate 
-            pkgs.openssl
-            pkgs.pkg-config
-          ];
+            let
+              pkgs = import <nixos-unstable> {};
+            in pkgs.mkShell {
+              buildInputs = [
+                pkgs.cargo
+                pkgs.rustc
+                pkgs.rustfmt
+                # Necessary for the openssl-sys crate 
+                pkgs.openssl
+                pkgs.pkg-config
+              ];
 
-          RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
-	  TMPDIR = "/tmp";
-        }
+              RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
+        TMPDIR = "/tmp";
+            }
       '';
     };
   };
@@ -151,5 +151,5 @@ in
     NPM_TOKEN = "fake palceholder";
   };
 
-  home.stateVersion = "21.11";
+  home.stateVersion = "22.05";
 }
