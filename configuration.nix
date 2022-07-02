@@ -18,9 +18,9 @@
   # mirror
   nix = {
     binaryCaches = [
-      "https://cache.nixos.org/"
-      "https://mirror.sjtu.edu.cn/nix-channels/store"
       "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+      "https://mirror.sjtu.edu.cn/nix-channels/store"
+      "https://cache.nixos.org/"
     ];
     extraOptions = ''
       experimental-features = nix-command flakes
@@ -78,6 +78,19 @@
   services = {
     xserver = {
       enable = true;
+
+      # key repeat
+      autoRepeatDelay = 200;
+      autoRepeatInterval = 30;
+
+      # libinput
+      libinput = {
+        enable = true;
+        mouse = {
+          accelSpeed = "0.5";
+        };
+      };
+
       displayManager = {
         gdm = {
           enable = true;
@@ -89,12 +102,6 @@
         };
       };
       dpi = 192;
-      resolutions = [
-        {
-          x = 2736;
-          y = 1824;
-        }
-      ];
     };
     openssh = {
       enable = true;
