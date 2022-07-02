@@ -74,6 +74,8 @@ My daily development environment, running on VMware workstation Player, Windows 
     };
     ```
 - Fix `node-gyp` build
+    see [nixpkgs#javascript](https://github.com/NixOS/nixpkgs/blob/master/doc/languages-frameworks/javascript.section.md#javascript-tools-overview)
+
     ```bash
     npm i -g node2nix
     node2nix
