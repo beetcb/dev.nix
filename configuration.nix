@@ -81,7 +81,7 @@
 
       # key repeat
       autoRepeatDelay = 200;
-      autoRepeatInterval = 30;
+      autoRepeatInterval = 25;
 
       # libinput
       libinput = {

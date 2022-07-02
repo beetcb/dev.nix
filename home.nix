@@ -24,7 +24,7 @@ in
           defaultBranch = "main";
         };
         pull = {
-          rebase = false;
+          rebase = true;
         };
         safe = {
           directory = os;
@@ -149,6 +149,8 @@ in
 
     # NPM
     NPM_TOKEN = "fake palceholder";
+    
+    EDITOR = "nvim";
   };
 
   home.stateVersion = "22.05";
