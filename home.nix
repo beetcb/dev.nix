@@ -14,7 +14,7 @@ in
   programs = enablePkgs {
     git = {
       userName = user;
-      userEmail = "63141491+beetcb@users.noreply.github.com";
+      userEmail = "alexphzhou@tencent.com";
       signing = {
         key = "A577D88811B9B09A";
         signByDefault = true;
@@ -50,7 +50,7 @@ in
           opacity = 0.7;
         };
         font = {
-          size = 30;
+          size = 20;
         };
       };
     };
@@ -78,6 +78,7 @@ in
         //registry.npmjs.org/:_authToken=''\${NPM_TOKEN}
         prefix=${home}/.local
         cache=${home}/.local/share/npm
+        registry=https://mirrors.tencent.com/npm/
       '';
     };
     ".config/leftwm" = {
