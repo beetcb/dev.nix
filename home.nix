@@ -149,7 +149,7 @@ in
 
     # NPM
     NPM_TOKEN = "fake palceholder";
-    
+
     EDITOR = "nvim";
   };
 

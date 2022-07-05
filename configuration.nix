@@ -18,9 +18,9 @@
   # mirror
   nix = {
     binaryCaches = [
-      "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-      "https://mirror.sjtu.edu.cn/nix-channels/store"
       "https://cache.nixos.org/"
+      "https://mirror.sjtu.edu.cn/nix-channels/store"
+      "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
     ];
     extraOptions = ''
       experimental-features = nix-command flakes
@@ -144,6 +144,8 @@
     wget
     xorg.xdpyinfo
     nixpkgs-fmt
+    fd
+    as-tree
   ];
 
   # programs config
@@ -173,6 +175,12 @@
   hardware.video.hidpi.enable = true;
   virtualisation.vmware.guest.enable = true;
   virtualisation.docker.enable = true;
+
+  # security
+  security.pki.certificateFiles = [
+    # use whistle(npm pkg) to download this certificateFile
+    "${builtins.getEnv "HOME"}/Downloads/rootCA.crt"
+  ];
 
   system.stateVersion = "22.05";
 }
