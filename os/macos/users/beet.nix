@@ -20,7 +20,7 @@ in
           defaultBranch = "main";
         };
         pull = {
-          rebase = false;
+          rebase = true;
         };
         safe = {
           directory = os;
@@ -43,10 +43,10 @@ in
             x = 8;
             y = 0;
           };
+          opacity = 0.7;
         };
-        background_opacity = 0.7;
         font = {
-          size = 30;
+          size = 16;
         };
       };
     };
@@ -57,6 +57,8 @@ in
   };
 
   home.packages = with unstablePkgs; [
+    fd
+    zoxide
     ripgrep
     nodejs-16_x
     dprint
@@ -71,9 +73,10 @@ in
   home.file = {
     ".npmrc" = {
       text = ''
-        //registry.npmjs.org/:_authToken=''\${NPM_TOKEN}
-        prefix=${home}/.local
-        cache=${home}/.local/share/npm
+              //registry.npmjs.org/:_authToken=''\${NPM_TOKEN}
+              prefix=${home}/.local
+              cache=${home}/.local/share/npm
+        registry=https://mirrors.tencent.com/npm/
       '';
     };
     ".config/rustfmt/rustfmt.toml" = {
@@ -110,10 +113,11 @@ in
     l = "exa -a";
     ls = "exa";
     ll = "exa -l";
+    cd = "zoxide";
     cat = "bat";
     vim = "nvim";
     vmshare = "vmhgfs-fuse .host:/ /mnt/";
-    os-rebuild = "sudo darwin-rebuild switch --flake ${os}#be";
+    os-rebuild = "darwin-rebuild switch --flake ${os}";
     os-update = ''
       cd ${os} &&
       nix flake update &&
@@ -122,7 +126,6 @@ in
     os-cleanup = ''
       sudo rm -f /nix/var/nix/gcroots/auto/* &&
       nix-collect-garbage -d &&
-      sudo nix-collect-garbage -d &&
       os-rebuild
     '';
   };
@@ -141,6 +144,8 @@ in
 
     # NPM
     NPM_TOKEN = "fake palceholder";
+
+    EDITOR = "nvim";
   };
 
   home.stateVersion = "22.05";

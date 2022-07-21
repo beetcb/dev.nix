@@ -24,7 +24,7 @@ in
           defaultBranch = "main";
         };
         pull = {
-          rebase = false;
+          rebase = true;
         };
         safe = {
           directory = os;
@@ -47,8 +47,8 @@ in
             x = 8;
             y = 0;
           };
+          opacity = 0.7;
         };
-        background_opacity = 0.7;
         font = {
           size = 30;
         };
@@ -61,6 +61,7 @@ in
   };
 
   home.packages = with unstablePkgs; [
+    zoxide
     ripgrep
     nodejs-16_x
     dprint
@@ -102,7 +103,6 @@ in
                 pkgs.openssl
                 pkgs.pkg-config
               ];
-
               RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
         TMPDIR = "/tmp";
             }
@@ -118,6 +118,7 @@ in
     l = "exa -a";
     ls = "exa";
     ll = "exa -l";
+    cd = "zoxide";
     cat = "bat";
     vim = "nvim";
     vmshare = "vmhgfs-fuse .host:/ /mnt/";
@@ -149,7 +150,9 @@ in
 
     # NPM
     NPM_TOKEN = "fake palceholder";
+
+    EDITOR = "nvim";
   };
 
-  home.stateVersion = "21.11";
+  home.stateVersion = "22.05";
 }

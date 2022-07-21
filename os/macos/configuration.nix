@@ -6,8 +6,8 @@
   # mirror
   nix = {
     binaryCaches = [
-      "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-      "https://mirror.sjtu.edu.cn/nix-channels/store"
+      # "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+      # "https://mirror.sjtu.edu.cn/nix-channels/store"
       "https://cache.nixos.org/"
     ];
     extraOptions = ''
@@ -15,37 +15,93 @@
     '';
   };
 
-  environment.systemPackages =
-    with pkgs; [
-      vscode
-      neovim
-      alacritty
-      git
-      nixpkgs-fmt
+  # desk
+  fonts = {
+    fontDir.enable = true;
+    fonts = with pkgs; [
+      (nerdfonts.override {
+        fonts = [ "Hack" ];
+      })
+      hack-font
+      noto-fonts-emoji
+      source-han-mono
+      source-han-sans
+      source-han-serif
     ];
+  };
+
+
+  environment =
+    {
+      shells = [ pkgs.bashInteractive ];
+      systemPackages =
+        with pkgs; [
+          neovim
+          alacritty
+          unzip
+          zip
+          gnupg
+          nixpkgs-fmt
+        ];
+    };
 
   # users
   users.users = {
     beet = {
       description = "beet's home";
       home = "/Users/beet";
-      shell = pkgs.zsh;
+      # We need to manually `chsh` to the nix-version
+      # bash because this option will point our
+      # default shell to the macos-version bash
+      # shell = pkgs.bashInteractive;
     };
   };
 
-  # Use a custom configuration.nix location.
-  # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
-  # environment.darwinConfig = "$HOME/.config/nixpkgs/darwin/configuration.nix";
+  # programs
+  programs = {
+    bash = {
+      enable = true;
+      enableCompletion = true;
+    };
+  };
 
-  # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
-  # nix.package = pkgs.nix;
+  # services
+  services = {
+    nix-daemon.enable = true;
+  };
 
-  # Create /etc/bashrc that loads the nix-darwin environment.
-  programs.zsh.enable = true; # default shell on catalina
-  # programs.fish.enable = true;
+  # system
+  system = {
+    defaults = {
+      NSGlobalDomain = {
+        AppleShowAllExtensions = true;
+        AppleShowAllFiles = true;
+        InitialKeyRepeat = 10;
+        KeyRepeat = 2;
+        _HIHideMenuBar = true;
+      };
+      dock = {
+        wvous-bl-corner = 4;
+        wvous-br-corner = 1;
+        wvous-tl-corner = 3;
+        wvous-tr-corner = 1;
+      };
+      finder = {
+        ShowPathbar = true;
+      };
+      spaces = {
+        spans-displays = false;
+      };
+      trackpad = {
+        Clicking = true;
+        TrackpadThreeFingerDrag = true;
+      };
 
-  # Used for backwards compatibility, please read the changelog before changing.
-  # $ darwin-rebuild changelog
-  system.stateVersion = 4;
+    };
+    keyboard = {
+      enableKeyMapping = true;
+      remapCapsLockToControl = true;
+    };
+    stateVersion = 4;
+  };
 }
