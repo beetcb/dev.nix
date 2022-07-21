@@ -68,15 +68,6 @@
   # services
   services = {
     nix-daemon.enable = true;
-    skhd = {
-      enable = true;
-      package = pkgs.skhd;
-    };
-    yabai = {
-      enable = true;
-      enableScriptingAddition = true;
-      package = pkgs.yabai;
-    };
   };
 
   # system

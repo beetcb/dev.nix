@@ -42,7 +42,7 @@ in
         window = {
           padding = {
             x = 8;
-            y = 0;
+            y = 8;
           };
           opacity = 0.75;
           decorations = "transparent";
@@ -82,14 +82,6 @@ in
   ];
 
   home.file = {
-    # wm
-    "${HOME}/.config/yabai/yabairc" = {
-      source = ../wm/yabairc;
-    };
-    "${HOME}/.config/skhd/skhdrc" = {
-      source = ../wm/skhdrc;
-    };
-
     ".npmrc" = {
       text = ''
         //registry.npmjs.org/:_authToken=''\${NPM_TOKEN}
