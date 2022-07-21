@@ -75,11 +75,19 @@ in
   ];
 
   home.file = {
+    # wm
+    ".yabairc" = {
+      source = ../wm/yabairc;
+    };
+    ".skhdrc" = {
+      source = ../wm/skhdrc;
+    };
+
     ".npmrc" = {
       text = ''
-              //registry.npmjs.org/:_authToken=''\${NPM_TOKEN}
-              prefix=${home}/.local
-              cache=${home}/.local/share/npm
+        //registry.npmjs.org/:_authToken=''\${NPM_TOKEN}
+        prefix=${home}/.local
+        cache=${home}/.local/share/npm
         registry=https://mirrors.tencent.com/npm/
       '';
     };
