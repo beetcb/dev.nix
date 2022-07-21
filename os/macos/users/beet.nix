@@ -33,6 +33,7 @@ in
       };
     };
     exa = { };
+    fzf = { };
     zoxide = { };
     go = {
       goPath = "go";
@@ -41,10 +42,10 @@ in
       settings = {
         window = {
           padding = {
-            x = 8;
-            y = 8;
+            x = 12;
+            y = 24;
           };
-          opacity = 0.75;
+          opacity = 0.85;
           decorations = "transparent";
         };
         font = {
@@ -55,8 +56,8 @@ in
         };
         key_bindings = [
           { 
-            key = "Paste"; 
-            mods = "Control";
+            key = "Return"; 
+            mods = "Command";
             action = "CreateNewWindow";          
           }
         ];

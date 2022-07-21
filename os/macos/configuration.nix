@@ -70,6 +70,9 @@
     nix-daemon.enable = true;
   };
 
+  # network
+  networking.computerName = "be";
+
   # system
   system = {
     defaults = {

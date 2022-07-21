@@ -38,7 +38,7 @@
       };
 
       darwinConfigurations = {
-        "bedeMacBook-Pro" = darwin.lib.darwinSystem rec {
+        "be" = darwin.lib.darwinSystem rec {
           system = "x86_64-darwin";
           modules = [
             ./os/macos/configuration.nix
