@@ -33,6 +33,7 @@ in
       };
     };
     exa = { };
+    zoxide = { };
     go = {
       goPath = "go";
     };
@@ -43,9 +44,13 @@ in
             x = 8;
             y = 0;
           };
-          opacity = 0.7;
+          # opacity = 0.75;
+          decorations = "transparent";
         };
         font = {
+          normal = {
+            family = "Hack Nerd Font";
+          };
           size = 16;
         };
       };
@@ -58,7 +63,6 @@ in
 
   home.packages = with unstablePkgs; [
     fd
-    zoxide
     ripgrep
     nodejs-16_x
     dprint
@@ -113,7 +117,7 @@ in
     l = "exa -a";
     ls = "exa";
     ll = "exa -l";
-    cd = "zoxide";
+    cd = "z";
     cat = "bat";
     vim = "nvim";
     vmshare = "vmhgfs-fuse .host:/ /mnt/";

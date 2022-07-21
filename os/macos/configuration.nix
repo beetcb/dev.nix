@@ -23,10 +23,10 @@
         fonts = [ "Hack" ];
       })
       hack-font
-      noto-fonts-emoji
-      source-han-mono
-      source-han-sans
-      source-han-serif
+      # noto-fonts-emoji
+      # source-han-mono
+      # source-han-sans
+      # source-han-serif
     ];
   };
 

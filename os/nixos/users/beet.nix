@@ -37,6 +37,7 @@ in
       };
     };
     exa = { };
+    zoxide = { };
     go = {
       goPath = "go";
     };
@@ -61,7 +62,7 @@ in
   };
 
   home.packages = with unstablePkgs; [
-    zoxide
+    fd
     ripgrep
     nodejs-16_x
     dprint
@@ -118,7 +119,6 @@ in
     l = "exa -a";
     ls = "exa";
     ll = "exa -l";
-    cd = "zoxide";
     cat = "bat";
     vim = "nvim";
     vmshare = "vmhgfs-fuse .host:/ /mnt/";
