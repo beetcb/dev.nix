@@ -44,7 +44,7 @@ in
             x = 8;
             y = 0;
           };
-          # opacity = 0.75;
+          opacity = 0.75;
           decorations = "transparent";
         };
         font = {
@@ -53,6 +53,13 @@ in
           };
           size = 16;
         };
+        key_bindings = [
+          { 
+            key = "Paste"; 
+            mods = "Control";
+            action = "CreateNewWindow";          
+          }
+        ];
       };
     };
     bash = { };
@@ -76,10 +83,10 @@ in
 
   home.file = {
     # wm
-    ".yabairc" = {
+    "${HOME}/.config/yabai/yabairc" = {
       source = ../wm/yabairc;
     };
-    ".skhdrc" = {
+    "${HOME}/.config/skhd/skhdrc" = {
       source = ../wm/skhdrc;
     };
 

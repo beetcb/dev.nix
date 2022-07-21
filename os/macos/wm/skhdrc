@@ -1,12 +1,5 @@
-# opens iTerm2
+# Terminal
 alt - return : "${HOME}"/.config/yabai/scripts/open_iterm2.sh
-
-# Show system statistics
-fn + lalt - 1 : "${HOME}"/.config/yabai/scripts/show_cpu.sh
-fn + lalt - 2 : "${HOME}"/.config/yabai/scripts/show_mem.sh
-fn + lalt - 3 : "${HOME}"/.config/yabai/scripts/show_bat.sh
-fn + lalt - 4 : "${HOME}"/.config/yabai/scripts/show_disk.sh
-fn + lalt - 5 : "${HOME}"/.config/yabai/scripts/show_song.sh
 
 # Navigation
 alt - h : yabai -m window --focus west
@@ -73,3 +66,8 @@ shift + lctrl + alt - r : \
 # Make window native fullscreen
 alt - f         : yabai -m window --toggle zoom-fullscreen
 shift + alt - f : yabai -m window --toggle native-fullscreen
+
+# Workspaces
+cmd - 1 : yabai -m space --focus 1
+cmd - 2 : yabai -m space --focus 2
+cmd - 3 : yabai -m space --focus 3
