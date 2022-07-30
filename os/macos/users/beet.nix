@@ -67,15 +67,15 @@ in
   };
 
   home.packages = with unstablePkgs; [
-    fd
-    ripgrep
+    fd ripgrep jless as-tree
     nodejs-16_x
     dprint
     pngquant
     vscode
     xsel
-    qrcp
+    # qrcp
     yarn
+    git-extras
     du-dust
   ];
 
