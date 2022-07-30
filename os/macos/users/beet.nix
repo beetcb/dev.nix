@@ -19,9 +19,6 @@ in
         init = {
           defaultBranch = "main";
         };
-        pull = {
-          rebase = true;
-        };
         safe = {
           directory = os;
         };
@@ -55,10 +52,10 @@ in
           size = 16;
         };
         key_bindings = [
-          { 
-            key = "Return"; 
+          {
+            key = "Return";
             mods = "Command";
-            action = "CreateNewWindow";          
+            action = "CreateNewWindow";
           }
         ];
       };
@@ -117,15 +114,12 @@ in
     };
   };
 
-  # xsession = { enable = true; };
-
   home.shellAliases = {
     g = "git";
     v = "nvim";
     l = "exa -a";
     ls = "exa";
     ll = "exa -l";
-    cd = "z";
     cat = "bat";
     vim = "nvim";
     vmshare = "vmhgfs-fuse .host:/ /mnt/";
