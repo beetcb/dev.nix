@@ -67,7 +67,10 @@ in
   };
 
   home.packages = with unstablePkgs; [
-    fd ripgrep jless as-tree
+    fd
+    ripgrep
+    jless
+    as-tree
     nodejs-16_x
     dprint
     pngquant
