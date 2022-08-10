@@ -82,6 +82,7 @@
         InitialKeyRepeat = 10;
         KeyRepeat = 2;
         _HIHideMenuBar = true;
+	"com.apple.trackpad.scaling" = "2.50";
       };
       dock = {
         wvous-bl-corner = 4;
