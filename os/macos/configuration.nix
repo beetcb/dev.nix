@@ -82,7 +82,7 @@
         InitialKeyRepeat = 10;
         KeyRepeat = 2;
         _HIHideMenuBar = true;
-	"com.apple.trackpad.scaling" = "2.50";
+        "com.apple.trackpad.scaling" = "2.50";
       };
       dock = {
         wvous-bl-corner = 4;
@@ -103,8 +103,13 @@
 
     };
     keyboard = {
+
       enableKeyMapping = true;
-      remapCapsLockToControl = true;
+      userKeyMapping = [
+        # Swap CapsLock with Ctrl
+        { HIDKeyboardModifierMappingSrc = 30064771296; HIDKeyboardModifierMappingDst = 30064771129; }
+        { HIDKeyboardModifierMappingSrc = 30064771129; HIDKeyboardModifierMappingDst = 30064771296; }
+      ];
     };
     stateVersion = 4;
   };
