@@ -13,4 +13,6 @@ in
   imports = [
     (import ../../common/user.nix user)
   ];
+
+  home.file = import ../files/files.nix;
 }
