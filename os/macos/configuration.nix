@@ -1,54 +1,14 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
-  nixpkgs.config.allowUnfree = true;
-
-  # mirror
-  nix = {
-    binaryCaches = [
-      # "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-      # "https://mirror.sjtu.edu.cn/nix-channels/store"
-      "https://cache.nixos.org/"
+  imports =
+    [
+      ../common/system.nix
     ];
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-  };
-
-  # desk
-  fonts = {
-    fontDir.enable = true;
-    fonts = with pkgs; [
-      (nerdfonts.override {
-        fonts = [ "Hack" ];
-      })
-      hack-font
-      # noto-fonts-emoji
-      # source-han-mono
-      # source-han-sans
-      # source-han-serif
-    ];
-  };
 
 
-  environment =
-    {
-      shells = [ pkgs.bashInteractive ];
-      systemPackages =
-        with pkgs; [
-          neovim
-          alacritty
-          unzip
-          zip
-          gnupg
-          nixpkgs-fmt
-        ];
-    };
-
-  # users
   users.users = {
     beet = {
-      description = "beet's home";
       home = "/Users/beet";
       # We need to manually `chsh` to the nix-version
       # bash because this option will point our
@@ -57,23 +17,10 @@
     };
   };
 
-  # programs
-  programs = {
-    bash = {
-      enable = true;
-      enableCompletion = true;
-    };
-  };
-
-  # services
   services = {
     nix-daemon.enable = true;
   };
 
-  # network
-  networking.computerName = "be";
-
-  # system
   system = {
     defaults = {
       NSGlobalDomain = {
@@ -103,7 +50,6 @@
 
     };
     keyboard = {
-
       enableKeyMapping = true;
       userKeyMapping = [
         # Swap CapsLock with Ctrl
@@ -111,6 +57,7 @@
         { HIDKeyboardModifierMappingSrc = 30064771129; HIDKeyboardModifierMappingDst = 30064771296; }
       ];
     };
+
     stateVersion = 4;
   };
 }
