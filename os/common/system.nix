@@ -30,6 +30,7 @@
           zip
           gnupg
           nixpkgs-fmt
+          nixpkgs-lint  
         ];
     };
 
