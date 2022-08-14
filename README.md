@@ -8,9 +8,9 @@ My daily development environment, running on VMware Workstation | VMware Fusion 
 
 > Background image source: https://unsplash.com/photos/5Lw1U5BIumE
 
-## Install NixOS
+## Install NixOS/Nix(Darwin)
 
-- Without flakes
+- Without flakes(only on linux vm)
 
     1. Follow the [manual](https://nixos.org/manual/nixos/stable/index.html) installation guide
 
@@ -26,7 +26,7 @@ My daily development environment, running on VMware Workstation | VMware Fusion 
         
         c. [install nix flakes](https://nixos.wiki/wiki/Flakes)
         
-        d. rebuild whole system with `sudo nixos-rebuild --flake "dot#be"`
+        d. rebuild whole system with `sudo nixos-rebuild --flake "."`
         
         e. GUNPG | SSH
         
@@ -35,15 +35,25 @@ My daily development environment, running on VMware Workstation | VMware Fusion 
   Follow the [manual](https://nixos.org/manual/nixos/stable/index.html) installation guide, replace 2.3.5 command with the following
   
     ```nix
+    # optional dir creation for store dev.nix repo
+    sudo mkdir -p /etc/build
+    sudo chown -R $(whoami) /etc/build
+    
     # when running on darwin, install nix, then darwin first.
     # enter a shell env(with nix flakes installed)
     nix-shell -p nixFlakes git
-    # clone dot repo using git
-    git clone https://github.com/beetcb/dot.git /mnt/etc/nixos/dot
-    # replace hardware configruation with newly generated one
-    cp /mnt/etc/nixos/hardware-configuration.nix /mnt/etc/nixos/dot/sp-hardware.nix
+    
+    # clone repo using git
+    git clone git@github.com:beetcb/dev.nix.git /etc/build/
+    
+    # replace hardware configruation with newly generated one(can be safly ignored on darwin)
+    cp /mnt/etc/nixos/hardware-configuration.nix /etc/build/hardware.nix
+    
     # finally, install nixos
-    nixos-install --impure --flake /mnt/etc/nixos/dot#be
+    ## linux
+    nixos-install --impure --flake /etc/build
+    ## darwin
+    darwin-install --impure --flake /etc/build
     ```
 
 # Nix/NixOS/VM Gotchas
