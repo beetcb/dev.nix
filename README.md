@@ -2,7 +2,7 @@
 
 ## Local Environment Info
 
-My daily development environment, running on VMware workstation Player, Windows 11 as host
+My daily development environment, running on VMware Workstation | VMware Fusion | MacOS.
 
 ![screenshot](./screenshot.png)
 
@@ -35,6 +35,7 @@ My daily development environment, running on VMware workstation Player, Windows 
   Follow the [manual](https://nixos.org/manual/nixos/stable/index.html) installation guide, replace 2.3.5 command with the following
   
     ```nix
+    # when running on darwin, install nix, then darwin first.
     # enter a shell env(with nix flakes installed)
     nix-shell -p nixFlakes git
     # clone dot repo using git
@@ -73,13 +74,7 @@ My daily development environment, running on VMware workstation Player, Windows 
       '';
     };
     ```
-- Fix `node-gyp` build
-    ```bash
-    npm i -g node2nix
-    node2nix
-    nix-shell -A shell
-    npm i
-    ```
+
 # Channels
 - For system pkgs: nixos latest statble channel
 - For user pkgs: mixin of nixos latest unstatble & statble channel
