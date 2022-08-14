@@ -5,7 +5,7 @@ let
     name = "beet";
     home = "/Users/${name}";
     email = "alexphzhou@tencent.com";
-    flakeRepo = "${home}/dot";
+    flakeRepo = "/etc/build";
     rebuildSysName = "darwin";
   };
 in

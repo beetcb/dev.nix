@@ -5,7 +5,7 @@ let
     name = "beet";
     home = "/home/${name}";
     email = "63141491+beetcb@users.noreply.github.com";
-    flakeRepo = "${home}/dot";
+    flakeRepo = "/etc/build";
     rebuildSysName = "nixos";
   };
 in
