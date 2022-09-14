@@ -17,6 +17,7 @@ in
         safe = {
           directory = user.flakeRepo;
         };
+	pull.ff = "only";
       };
     };
     bat = {
@@ -33,6 +34,11 @@ in
     alacritty = { };
     bash = { };
     starship = { };
+    direnv = {
+      nix-direnv = {
+        enable = true;
+      };
+    };
 
     home-manager = { };
   };

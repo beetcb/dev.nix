@@ -15,15 +15,15 @@ sudo yabai --load-sa
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
 # global settings
-yabai -m config mouse_follows_focus          off
+yabai -m config mouse_follows_focus          on
 yabai -m config focus_follows_mouse          off 
 
 # general space settings
 yabai -m config layout                       bsp
-yabai -m config top_padding                  10
+yabai -m config top_padding                  06
 yabai -m config bottom_padding               10
-yabai -m config left_padding                 10
-yabai -m config right_padding                10
+yabai -m config left_padding                 06
+yabai -m config right_padding                06
 yabai -m config window_gap                   06
 
 yabai -m rule --add label="System Preferences" app="^System Preferences$" manage=off
