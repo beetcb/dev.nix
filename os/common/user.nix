@@ -71,7 +71,7 @@ in
     cat = "bat";
     vim = "nvim";
     vmshare = "vmhgfs-fuse .host:/ /mnt/";
-    os-rebuild = "${user.rebuildSysName}-rebuild switch --flake ${user.flakeRepo}";
+    os-rebuild = "${if user.rebuildSysName == "nixos" then "sudo" else ""} ${user.rebuildSysName}-rebuild switch --flake ${user.flakeRepo}";
     os-update = ''
       cd ${user.flakeRepo} &&
       nix flake update &&

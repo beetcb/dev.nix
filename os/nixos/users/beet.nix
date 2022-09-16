@@ -15,8 +15,8 @@ in
   ];
 
   home.file = {
-    ".config/leftwm" = {
-      source = ./files/.config/leftwm;
+    "./.config" = {
+      source = ./files/.config;
       recursive = true;
     };
   };

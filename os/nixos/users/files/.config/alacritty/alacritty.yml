@@ -1,0 +1,14 @@
+font:
+  normal:
+    family: Hack Nerd Font
+  size: 22
+key_bindings:
+- action: CreateNewWindow
+  key: Return
+  mods: Command
+window:
+  decorations: Full 
+  opacity: 0.85
+  padding:
+    x: 12
+    y: 24

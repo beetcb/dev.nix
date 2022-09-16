@@ -14,5 +14,5 @@ in
     (import ../../common/user.nix user)
   ];
 
-  home.file = import ../files/files.nix;
+  home.file = import ./files/files.nix;
 }
