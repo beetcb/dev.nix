@@ -34,12 +34,6 @@ in
     alacritty = { };
     bash = { };
     starship = { };
-    direnv = {
-      nix-direnv = {
-        enable = true;
-      };
-    };
-
     home-manager = { };
   };
 
