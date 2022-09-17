@@ -29,8 +29,9 @@
           unzip
           zip
           gnupg
+          rnix-lsp
           nixpkgs-fmt
-          nixpkgs-lint  
+          nixpkgs-lint
         ];
     };
 

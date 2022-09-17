@@ -17,7 +17,7 @@ in
         safe = {
           directory = user.flakeRepo;
         };
-	pull.ff = "only";
+        pull.ff = "only";
       };
     };
     bat = {
@@ -71,7 +71,9 @@ in
     cat = "bat";
     vim = "nvim";
     vmshare = "vmhgfs-fuse .host:/ /mnt/";
-    os-rebuild = "${if user.rebuildSysName == "nixos" then "sudo" else ""} ${user.rebuildSysName}-rebuild switch --flake ${user.flakeRepo}";
+    os-rebuild = pkgs.lib.optionalString pkgs.stdenv.isLinux "sudo "
+      +
+      "${user.rebuildSysName}-rebuild switch --flake ${user.flakeRepo}";
     os-update = ''
       cd ${user.flakeRepo} &&
       nix flake update &&

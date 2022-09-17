@@ -20,13 +20,13 @@
   services = {
     nix-daemon.enable = true;
     /*
-    # To Avoid the buggy permission issue on yabai rev0.3.5,
-    # currently using brew to manage yabai. 
-    yabai = {
+      # To Avoid the buggy permission issue on yabai rev0.3.5,
+      # currently using brew to manage yabai. 
+      yabai = {
       enable = true;
       enableScriptingAddition = true;
       package = pkgs.yabai;
-    };
+      };
     */
     skhd = {
       enable = true;
