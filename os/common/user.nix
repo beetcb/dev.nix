@@ -52,6 +52,7 @@ in
     yarn
     git-extras
     du-dust
+    rnix-lsp
   ];
 
   home.file = import ./files/files.nix;

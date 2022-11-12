@@ -52,10 +52,17 @@
     docker.enable = true;
   };
 
-  boot = {
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
-  };
+  # 
+  #   boot = {
+  #     loader.systemd-boot.enable = true;
+  #     loader.efi.canTouchEfiVariables = true;
+  #   };
+  # 
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.useOSProber = true;
+
+
 
   nix = {
     autoOptimiseStore = true;
