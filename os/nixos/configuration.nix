@@ -62,8 +62,6 @@
   boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
 
-
-
   nix = {
     autoOptimiseStore = true;
   };
