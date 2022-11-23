@@ -1,5 +1,5 @@
 {
-  "image": "docker.io/library/nixos/nix:latest",
+  "image": "nixos/nix",
   "features": {
   }
 }
