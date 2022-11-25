@@ -47,11 +47,11 @@ My daily development environment, running on VMware Workstation | VMware Fusion 
   git clone git@github.com:beetcb/dev.nix.git /etc/build/
 
   # replace hardware configruation with newly generated one(can be safly ignored on darwin)
-  cp /mnt/etc/nixos/hardware-configuration.nix /etc/build/hardware.nix
+  cp /mnt/etc/nixos/hardware-configuration.nix /etc/build/os/nixos/hardware.nix
 
   # finally, install nixos
   ## linux
-  nixos-install --impure --flake /etc/build
+  sudo nixos-install --impure --flake /etc/build
   ## darwin
   darwin-rebuild switch --flake /etc/build
   ```
