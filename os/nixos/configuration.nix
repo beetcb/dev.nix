@@ -96,7 +96,6 @@
           enable = true;
         };
       };
-      dpi = 192;
     };
     openssh = {
       enable = true;
