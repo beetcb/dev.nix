@@ -1,7 +1,7 @@
 font:
   normal:
     family: Hack Nerd Font
-  size: 12
+  size: 16
 key_bindings:
 - action: CreateNewWindow
   key: Return

@@ -1,9 +1,5 @@
 { config, pkgs, ... }:
 
-let
-  nur = config.nur;
-  clash-premium = nur.repos.linyinfeng.clash-premium;
-in
 {
   imports =
     [
@@ -19,7 +15,6 @@ in
         group = "docker";
         extraGroups = [
           "wheel"
-          "networkmanager"
         ];
       };
     };
@@ -44,16 +39,16 @@ in
   };
 
   hardware = {
-    pulseaudio.enable = false;
+    video.hidpi.enable = true;
+    pulseaudio.enable = true;
   };
-
-  security.rtkit.enable = true;
 
   sound = {
     enable = true;
   };
 
   virtualisation = {
+    vmware.guest.enable = true;
     docker.enable = true;
   };
 
@@ -64,17 +59,14 @@ in
   };
 
   nix = {
-    settings.auto-optimise-store = true;
+    autoOptimiseStore = true;
   };
 
   networking = {
     hostName = "be";
+    useDHCP = false;
+    interfaces.ens33.useDHCP = true;
     firewall.allowedTCPPorts = [ 3000 1234 ];
-    networkmanager = {
-      enable = true;
-      insertNameservers = [ "8.8.8.8" ];
-      dns = "none";
-    };
   };
 
   # service
@@ -99,9 +91,8 @@ in
           enable = true;
         };
       };
-
-      desktopManager = {
-        gnome = {
+      windowManager = {
+        leftwm = {
           enable = true;
         };
       };
@@ -114,29 +105,26 @@ in
         enable = true;
       };
     };
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-    };
-    printing.enable = true;
-  };
-
-  systemd.services.clashd = {
-    wantedBy = [ "multi-user.target" ];
-    after = [ "network.target" ];
-    description = "Clash daemon";
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = ''${clash-premium}/bin/clash-premium -d /etc/clash'';
-    };
   };
 
   environment = {
+    variables = {
+      GDK_SCALE = "2";
+      GDK_DPI_SCALE = "0.5";
+    };
     systemPackages = with pkgs; [
-      google-chrome
-      clash-premium
+      xfce.thunar
+      polybar
+      feh
+      rofi
+      leftwm
+      picom
+      polkit
+      chromium
+      xclip
+      wget
+      xorg.xdpyinfo
+      nixpkgs-fmt
     ];
   };
 
@@ -150,5 +138,5 @@ in
     };
   };
 
-  system = { stateVersion = "22.11"; };
+  system = { stateVersion = "22.05"; };
 }
