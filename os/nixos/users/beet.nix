@@ -8,19 +8,13 @@ let
     flakeRepo = "/etc/build";
     rebuildSysName = "nixos";
   };
+  files = import ./files/files.nix;
+  shardFiles = import ../../common/files/files.nix;
 in
 {
   imports = [
     (import ../../common/user.nix user)
   ];
 
-  home.file = {
-    "./.config" = {
-      source = ./files/.config;
-      recursive = true;
-    };
-  };
-
-  xsession = { enable = true; };
-  home.stateVersion = "22.05";
+  home.file = pkgs.lib.recursiveUpdate shardFiles files;
 }

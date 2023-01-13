@@ -7,8 +7,8 @@ key_bindings:
   key: Return
   mods: Command
 window:
-  decorations: Full 
+  decorations: full
   opacity: 0.85
   padding:
-    x: 12
-    y: 16
+    x: 8
+    y: 8

@@ -8,11 +8,13 @@ let
     flakeRepo = "/etc/build";
     rebuildSysName = "darwin";
   };
+  files = import ./files/files.nix;
+  shardFiles = import ../../common/files/files.nix;
 in
 {
   imports = [
     (import ../../common/user.nix user)
   ];
 
-  home.file = import ./files/files.nix;
+  home.file = pkgs.lib.recursiveUpdate shardFiles files;
 }

@@ -24,7 +24,7 @@
       shells = [ pkgs.bashInteractive ];
       systemPackages =
         with pkgs; [
-          neovim
+          neovim gcc
           alacritty
           unzip
           zip

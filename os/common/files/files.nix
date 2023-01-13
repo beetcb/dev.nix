@@ -1,9 +1,16 @@
 {
+
+  ".config/alacritty" = {
+    source = ./.config/alacritty;
+  };
   ".npmrc" = {
     source = ./.npmrc;
   };
-  ".config" = {
-    source = ./.config;
-    recursive = true;
+  ".config/nvim" = {
+    source = ./.config/nvim;
   };
+  ".config/rustfmt" = {
+    source = ./.config/rustfmt;
+  };
+
 }

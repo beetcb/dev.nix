@@ -37,6 +37,8 @@ in
     home-manager = { };
   };
 
+  # home.file = import ./files/files.nix;
+
   home.username = user.name;
   home.homeDirectory = user.home;
   home.packages = with unstablePkgs; [
@@ -54,8 +56,6 @@ in
     du-dust
     rnix-lsp
   ];
-
-  home.file = import ./files/files.nix;
 
   home.shellAliases = {
     g = "git";
@@ -100,6 +100,6 @@ in
     EDITOR = "nvim";
   };
 
-  home.stateVersion = "22.05";
+  home.stateVersion = "22.11";
 }
 
