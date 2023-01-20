@@ -1,5 +1,5 @@
 user:
-{ config, pkgs, unstablePkgs, ... }:
+{ config, pkgs, unstablePkgs, nvim, ... }:
 with builtins;
 
 let
@@ -7,6 +7,38 @@ let
 in
 {
   programs = enablePkgs {
+    nixvim = {
+      globals.mapleader = " ";
+      plugins = enablePkgs {
+        # Autocompletion
+        nvim-cmp = {
+	  auto_enable_sources = true;
+          sources = [
+            { name = "nvim_lsp"; }
+          ];
+        };
+        # Highlight & TreeSitter
+        treesitter = { };
+        # Git helpers
+        fugitive = { };
+        gitsigns = { };
+        # Status line
+        lualine = { };
+        # Fuzzy finder
+        telescope = {
+          extensions.fzy-native = enablePkgs {};
+        };
+        # LSP
+        lsp = {
+          servers = enablePkgs {
+            gopls = { };
+            rnix-lsp = { };
+            rust-analyzer = { };
+          };
+        };
+      };
+      colorschemes.nord = {};
+    };
     git = {
       userName = user.name;
       userEmail = user.email;
@@ -36,8 +68,6 @@ in
     starship = { };
     home-manager = { };
   };
-
-  # home.file = import ./files/files.nix;
 
   home.username = user.name;
   home.homeDirectory = user.home;

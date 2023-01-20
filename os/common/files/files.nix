@@ -6,9 +6,9 @@
   ".npmrc" = {
     source = ./.npmrc;
   };
-  ".config/nvim" = {
-    source = ./.config/nvim;
-  };
+  #  ".config/nvim" = {
+  #    source = ./.config/nvim;
+  #  };
   ".config/rustfmt" = {
     source = ./.config/rustfmt;
   };

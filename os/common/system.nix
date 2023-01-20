@@ -24,14 +24,10 @@
       shells = [ pkgs.bashInteractive ];
       systemPackages =
         with pkgs; [
-          neovim gcc
           alacritty
           unzip
           zip
           gnupg
-          rnix-lsp
-          nixpkgs-fmt
-          nixpkgs-lint
         ];
     };
 

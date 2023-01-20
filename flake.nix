@@ -1,12 +1,13 @@
 {
   description = "beet's home";
-
   inputs = {
     macos.url = "github:NixOS/nixpkgs/nixpkgs-22.11-darwin";
     nixos.url = "github:NixOS/nixpkgs/nixos-22.11";
     nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nur.url = "github:nix-community/NUR";
+    nixvim.url = "github:pta2002/nixvim";
+    nixvim.inputs.nixpkgs.follows = "nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/release-22.11";
     home-manager.inputs.nixpkgs.follows = "nixos";
     darwin.url = "github:lnl7/nix-darwin/master";
@@ -14,7 +15,7 @@
   };
 
   outputs =
-    { home-manager, nixos, nixos-unstable, nixos-hardware, nur, darwin, ... }: {
+    { home-manager, nixos, nixos-unstable, nixos-hardware, nur, nixvim, darwin, ... }: {
       nixosConfigurations = {
         be = nixos.lib.nixosSystem rec {
           system = "x86_64-linux";
@@ -26,13 +27,15 @@
             nur.nixosModules.nur
             # Pass args to home.nix
             ({ ... }: {
-              home-manager.users.beet.config = {
-                _module.args = {
-                  unstablePkgs = import nixos-unstable {
-                    inherit system;
-                    config = { allowUnfree = true; };
+              home-manager.users.beet = {
+                config = {
+                  _module.args = {
+                    unstablePkgs = import nixos-unstable {
+                      inherit system;
+                      config = { allowUnfree = true; };
+                    };
+                    nur = nur.nurpkgs;
                   };
-                  nur = nur.nurpkgs;
                 };
               };
             })
@@ -40,7 +43,9 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.beet = import ./os/nixos/users/beet.nix;
+              home-manager.users.beet = {
+                imports = [ ./os/nixos/users/beet.nix nixvim.homeManagerModules.nixvim ];
+              };
             }
           ];
         };
