@@ -8,6 +8,9 @@ in
 {
   programs = enablePkgs {
     nixvim = {
+      extraConfigLua = ''
+	require("extra")
+      '';
       globals.mapleader = " ";
       plugins = enablePkgs {
         # Autocompletion
@@ -15,6 +18,9 @@ in
 	  auto_enable_sources = true;
           sources = [
             { name = "nvim_lsp"; }
+            { name = "lua"; }
+            { name = "path"; }
+            { name = "buffer"; }
           ];
         };
         # Highlight & TreeSitter
