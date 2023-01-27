@@ -7,44 +7,7 @@ let
 in
 {
   programs = enablePkgs {
-    nixvim = {
-      extraConfigLua = ''
-	require("extra")
-      '';
-      globals.mapleader = " ";
-      plugins = enablePkgs {
-        # Autocompletion
-        nvim-cmp = {
-	  auto_enable_sources = true;
-          sources = [
-            { name = "nvim_lsp"; }
-            { name = "lua"; }
-            { name = "path"; }
-            { name = "buffer"; }
-          ];
-        };
-        # Highlight & TreeSitter
-        treesitter = { };
-        # Git helpers
-        fugitive = { };
-        gitsigns = { };
-        # Status line
-        lualine = { };
-        # Fuzzy finder
-        telescope = {
-          extensions.fzy-native = enablePkgs {};
-        };
-        # LSP
-        lsp = {
-          servers = enablePkgs {
-            gopls = { };
-            rnix-lsp = { };
-            rust-analyzer = { };
-          };
-        };
-      };
-      colorschemes.nord = {};
-    };
+    nixvim = import ./files/.config/nvim/nixvim.nix enablePkgs;
     git = {
       userName = user.name;
       userEmail = user.email;
