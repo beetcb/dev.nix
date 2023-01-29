@@ -6,7 +6,7 @@
     nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nur.url = "github:nix-community/NUR";
-    nixvim.url = "github:pta2002/nixvim";
+    nixvim.url = "github:beetcb/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/release-22.11";
     home-manager.inputs.nixpkgs.follows = "nixos";

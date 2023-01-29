@@ -8,13 +8,25 @@ enablePkgs:
       auto_enable_sources = true;
       # see -> https://github.com/pta2002/nixvim/blob/main/plugins/completion/nvim-cmp/cmp-helpers.nix#L12
       sources = [
+        { name = "luasnip"; }
         { name = "nvim_lsp"; }
         { name = "nvim_lua"; }
-        { name = "lua"; }
         { name = "path"; }
         { name = "buffer"; }
       ];
+      # see -> https://github.com/hrsh7th/nvim-cmp/blob/main/lua/cmp/config/mapping.lua#L36
       mappingPresets = [ "insert" "cmdline" ];
+      mapping = {
+        "<C-b>" = ''cmp.mapping(cmp.mapping.scroll_docs(-1), { "i" })'';
+        "<C-f>" = ''cmp.mapping(cmp.mapping.scroll_docs(1), { "i" })'';
+        "<C-e>" = "cmp.mapping(cmp.mapping.abort())";
+        "<CR>" = "cmp.mapping.confirm { select = true }";
+      };
+      snippet.expand = ''
+        function(args)
+          require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        end
+      '';
     };
     lspkind = { };
     # Highlight & TreeSitter
@@ -26,7 +38,7 @@ enablePkgs:
     lualine = { };
     # Fuzzy finder
     telescope = {
-      extensions.fzy-native = enablePkgs { };
+      extensions.gh.enable = true;
     };
     # LSP
     lsp = {
@@ -40,7 +52,7 @@ enablePkgs:
         tsserver = { };
         sumneko-lua = { };
 
-	jsonls = {};
+        jsonls = { };
       };
       onAttach = ''
                     -- Enable completion triggered by <c-x><c-o>
@@ -75,5 +87,11 @@ enablePkgs:
         	  '';
     };
   };
-  colorschemes.nord.enable = true;
+  colorschemes = enablePkgs {
+    nord = {
+      contrast = true;
+      disable_background = true;
+      italic = false;
+    };
+  };
 }

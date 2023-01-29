@@ -42,6 +42,8 @@ in
   home.homeDirectory = user.home;
   home.packages = with unstablePkgs; [
     fd
+    gh
+    xsel
     ripgrep
     jless
     as-tree

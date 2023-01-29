@@ -154,15 +154,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1674764325,
-        "narHash": "sha256-3YEOnDIfcHkoQn4ozY9EI4MVt/94SmwElLy8cDlvWbg=",
-        "owner": "pta2002",
+        "lastModified": 1675004056,
+        "narHash": "sha256-n3IKDsapuQz8zsyy/hAV32d3w/uhEINkltxmHceN3Mo=",
+        "owner": "beetcb",
         "repo": "nixvim",
-        "rev": "8a0056617afbdef0a5dee89505e1e20c2798295f",
+        "rev": "1bf01b7c408dc8580e9554a0787f9e5621692e70",
         "type": "github"
       },
       "original": {
-        "owner": "pta2002",
+        "owner": "beetcb",
         "repo": "nixvim",
         "type": "github"
       }
