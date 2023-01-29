@@ -46,14 +46,10 @@ in
     jless
     as-tree
     nodejs-16_x
-    dprint
-    pngquant
-    vscode
-    xsel
+    nodePackages.typescript
     yarn
     git-extras
     du-dust
-    rnix-lsp
   ];
 
   home.shellAliases = {
@@ -63,7 +59,6 @@ in
     ls = "exa";
     ll = "exa -l";
     cat = "bat";
-    vim = "nvim";
     vmshare = "vmhgfs-fuse .host:/ /mnt/";
     os-rebuild = pkgs.lib.optionalString pkgs.stdenv.isLinux "sudo "
       +

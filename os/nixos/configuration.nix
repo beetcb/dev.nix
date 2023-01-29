@@ -142,6 +142,7 @@ in
     systemPackages = with pkgs; [
       google-chrome
       clash-premium
+      libcamera
     ];
   };
 
