@@ -1,5 +1,5 @@
 user:
-{ config, pkgs, unstablePkgs, nvim, ... }:
+{ config, pkgs, nvim, ... }:
 with builtins;
 
 let
@@ -40,7 +40,7 @@ in
 
   home.username = user.name;
   home.homeDirectory = user.home;
-  home.packages = with unstablePkgs; [
+  home.packages = with pkgs; [
     fd
     gh
     xsel

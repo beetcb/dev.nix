@@ -46,12 +46,10 @@ enablePkgs:
         gopls = { };
         rnix-lsp = { };
         rust-analyzer = { };
-
         html = { };
         eslint = { };
         tsserver = { };
         sumneko-lua = { };
-
         jsonls = { };
       };
       onAttach = ''
