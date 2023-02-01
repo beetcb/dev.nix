@@ -6,34 +6,55 @@
     nixos.url = "github:NixOS/nixpkgs/nixos-22.11";
     nixos-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    nur.url = "github:nix-community/NUR";
-    nixvim.url = "github:beetcb/nixvim";
-    home-manager.url = "github:nix-community/home-manager/release-22.11";
     darwin.url = "github:lnl7/nix-darwin/master";
+    nur.url = "github:nix-community/NUR";
+    nixvim = {
+      url = "github:beetcb/nixvim";
+      inputs.nixpkgs.follows = "nixos-unstable";
+    };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixos-unstable";
+    };
   };
 
   outputs =
-    { home-manager, nixos, nixos-hardware, nur, nixvim, darwin, ... }: {
+
+
+    { home-manager, nixos, nixos-unstable, nixos-hardware, nur, nixvim, darwin, ... }:
+
+    let
+      system = "x86_64-linux";
+      unstablePkgs = import nixos-unstable {
+        inherit system;
+        config = { allowUnfree = true; };
+      };
+      homeConf = {
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          users.beet = {
+            imports = [ ./os/nixos/users/beet.nix nixvim.homeManagerModules.nixvim ];
+          };
+          extraSpecialArgs = {
+            nur = nur.nurpkgs;
+            pkgs = unstablePkgs;
+          };
+        };
+      };
+    in
+    {
       nixosConfigurations = {
         be = nixos.lib.nixosSystem rec {
-          system = "x86_64-linux";
+          inherit system;
           modules = [
             ./os/nixos/configuration.nix
             # Custom hardware kernel
-            nixos-hardware.nixosModules.microsoft-surface-pro-intel
+            # nixos-hardware.nixosModules.microsoft-surface-pro-intel
             # Add config.nur
             nur.nixosModules.nur
             home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                users.beet = {
-                  imports = [ ./os/nixos/users/beet.nix nixvim.homeManagerModules.nixvim ];
-                };
-                extraSpecialArgs = {
-                  nur = nur.nurpkgs;
-                };
-              };
-            }
+            homeConf
           ];
         };
       };

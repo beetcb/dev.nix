@@ -35,7 +35,7 @@ in
     alacritty = { };
     bash = { };
     starship = { };
-    home-manager = { };
+    # home-manager = { };
   };
 
   home.username = user.name;
@@ -96,6 +96,6 @@ in
     EDITOR = "nvim";
   };
 
-  home.stateVersion = "22.11";
+  home.stateVersion = "23.05";
 }
 
