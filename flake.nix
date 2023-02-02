@@ -28,7 +28,7 @@
       };
       homeConf = {
         home-manager = {
-	  useGlobalPkgs = true;
+          useGlobalPkgs = true;
           useUserPackages = true;
           users.beet = {
             imports = [ ./os/nixos/users/beet.nix nixvim.homeManagerModules.nixvim ];
@@ -46,7 +46,7 @@
           modules = [
             ./os/nixos/configuration.nix
             # Custom hardware kernel
-            # nixos-hardware.nixosModules.microsoft-surface-pro-intel
+            nixos-hardware.nixosModules.microsoft-surface-pro-intel
             # Add config.nur
             nur.nixosModules.nur
             home-manager.nixosModules.home-manager
