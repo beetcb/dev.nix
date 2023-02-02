@@ -48,15 +48,7 @@ in
     timeZone = "Asia/Shanghai";
   };
 
-  hardware = {
-    pulseaudio.enable = false;
-  };
-
   security.rtkit.enable = true;
-
-  sound = {
-    enable = true;
-  };
 
   virtualisation = {
     docker.enable = true;
@@ -81,6 +73,17 @@ in
       dns = "none";
     };
   };
+
+  # sound
+  sound = {
+    enable = true;
+    mediaKeys.enable = true;
+  };
+  hardware.pulseaudio = {
+    enable = true;
+    package = pkgs.pulseaudioFull;
+  };
+
 
   # service
   services = {
@@ -118,12 +121,6 @@ in
       gnome-keyring = {
         enable = true;
       };
-    };
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
     };
     printing.enable = true;
   };

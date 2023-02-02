@@ -2,6 +2,9 @@ enablePkgs:
 {
   extraConfigLua = builtins.readFile ./extra.lua;
   globals.mapleader = " ";
+  options = {
+    number = true;
+  };
   plugins = enablePkgs {
     # Autocompletion
     nvim-cmp = {
@@ -27,6 +30,7 @@ enablePkgs:
           require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
         end
       '';
+      window.documentation.max_width = 48;
     };
     lspkind = { };
     # Highlight & TreeSitter
@@ -36,10 +40,14 @@ enablePkgs:
     gitsigns = { };
     # Status line
     lualine = { };
-    # Fuzzy finder
-    telescope = {
-      extensions.gh.enable = true;
+    # Indent
+    indent-blankline = {
+      useTreesitter = true;
+      showCurrentContext = true;
+      showEndOfLine = true;
     };
+    # Fuzzy finder
+    telescope = { };
     # LSP
     lsp = {
       servers = enablePkgs {

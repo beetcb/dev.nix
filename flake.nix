@@ -9,7 +9,7 @@
     darwin.url = "github:lnl7/nix-darwin/master";
     nur.url = "github:nix-community/NUR";
     nixvim = {
-      url = "github:beetcb/nixvim";
+      url = "github:pta2002/nixvim";
       inputs.nixpkgs.follows = "nixos-unstable";
     };
     home-manager = {

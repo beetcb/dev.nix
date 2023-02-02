@@ -70,7 +70,6 @@ in
     '';
     os-cleanup = ''
       sudo rm -f /nix/var/nix/gcroots/auto/* &&
-      nix-collect-garbage -d &&
       sudo nix-collect-garbage -d && 
       os-rebuild
     '';
