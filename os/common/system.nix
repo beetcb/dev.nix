@@ -1,7 +1,4 @@
-# The variable pkgs contains Nixpkgs (by default, it takes the nixpkgs entry of NIX_PATH)A,
-# while config contains the full system configuration. 
 { config, pkgs, ... }:
-
 {
   nixpkgs.config.allowUnfree = true;
   nix = {

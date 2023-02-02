@@ -32,10 +32,8 @@ in
     go = {
       goPath = "go";
     };
-    alacritty = { };
     bash = { };
     starship = { };
-    # home-manager = { };
   };
 
   home.username = user.name;

@@ -19,10 +19,7 @@
   };
 
   outputs =
-
-
     { home-manager, nixos, nixos-unstable, nixos-hardware, nur, nixvim, darwin, ... }:
-
     let
       system = "x86_64-linux";
       unstablePkgs = import nixos-unstable {
@@ -31,13 +28,12 @@
       };
       homeConf = {
         home-manager = {
-          useGlobalPkgs = true;
+	  useGlobalPkgs = true;
           useUserPackages = true;
           users.beet = {
             imports = [ ./os/nixos/users/beet.nix nixvim.homeManagerModules.nixvim ];
           };
           extraSpecialArgs = {
-            nur = nur.nurpkgs;
             pkgs = unstablePkgs;
           };
         };
