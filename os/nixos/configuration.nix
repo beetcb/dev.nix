@@ -66,7 +66,8 @@ in
 
   networking = {
     hostName = "be";
-    firewall.allowedTCPPorts = [ 3000 1234 ];
+    firewall.enable = false;
+    # firewall.allowedTCPPorts = [ 3000 1234 ];
     networkmanager = {
       enable = true;
       insertNameservers = [ "8.8.8.8" ];
