@@ -7,7 +7,7 @@ let
 in
 {
   programs = enablePkgs {
-    nixvim = import ./files/.config/nvim/nixvim.nix enablePkgs;
+    nixvim = import ./files/.config/nvim/nixvim.nix enablePkgs pkgs;
     git = {
       userName = user.name;
       userEmail = user.email;

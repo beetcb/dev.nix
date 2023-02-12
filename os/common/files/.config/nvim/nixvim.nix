@@ -1,8 +1,18 @@
-enablePkgs:
+enablePkgs: pkgs:
 {
   extraConfigLua = builtins.readFile ./extra.lua;
+  extraPackages = [ pkgs.xclip ];
+  extraPlugins = with pkgs.vimPlugins; [
+    vim-sleuth
+  ];
   globals.mapleader = " ";
   options = {
+    shiftwidth = 2;
+    smartindent = true;
+    expandtab = true;
+
+    smartcase = true;
+    ignorecase = true;
     number = true;
   };
   plugins = enablePkgs {
@@ -30,22 +40,28 @@ enablePkgs:
           require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
         end
       '';
-      window.documentation.max_width = 48;
+      window.completion = {
+        winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None";
+        border = "single";
+      };
+
+      window.documentation = {
+        winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None";
+        border = "single";
+      };
     };
     lspkind = { };
     # Highlight & TreeSitter
     treesitter = { };
     # Git helpers
-    fugitive = { };
     gitsigns = { };
     # Status line
     lualine = { };
     # Indent
-    indent-blankline = {
-      useTreesitter = true;
-      showCurrentContext = true;
-      showEndOfLine = true;
-    };
+    #  indent-blankline = {
+    #    useTreesitter = true;
+    #    showEndOfLine = true;
+    #  };
     # Fuzzy finder
     telescope = { };
     # LSP
@@ -59,6 +75,7 @@ enablePkgs:
         tsserver = { };
         sumneko-lua = { };
         jsonls = { };
+        pyright = { };
       };
       onAttach = ''
         -- Enable completion triggered by <c-x><c-o>
@@ -101,10 +118,19 @@ enablePkgs:
         vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
       '';
     };
+
+    lsp-lines = {
+      enable = true;
+      currentLine = true;
+    };
     null-ls = {
       sources.formatting.prettier.enable = true;
       sources.diagnostics.shellcheck.enable = true;
     };
+    nix = { };
+    nvim-autopairs = { };
+    surround = { };
+    nvim-tree = { };
   };
   colorschemes = enablePkgs {
     nord = {
