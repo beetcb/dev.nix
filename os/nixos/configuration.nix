@@ -141,6 +141,7 @@ in
       google-chrome
       clash-premium
       libcamera
+      quickemu
     ];
   };
 

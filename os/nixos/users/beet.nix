@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, nur, ... }:
 
 let
   user = rec {
@@ -17,4 +17,7 @@ in
   ];
 
   home.file = pkgs.lib.recursiveUpdate shardFiles files;
+  home.packages = with pkgs; [
+    qq
+  ];
 }

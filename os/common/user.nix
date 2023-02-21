@@ -46,7 +46,7 @@ in
     jless
     as-tree
     nodejs-16_x
-    nodePackages.typescript
+    # nodePackages.typescript
     yarn
     git-extras
     du-dust

@@ -26,6 +26,10 @@
         inherit system;
         config = { allowUnfree = true; };
       };
+      nurPkgs = import nur {
+        nurpkgs = unstablePkgs;
+        pkgs = unstablePkgs;
+      };
       homeConf = {
         home-manager = {
           useGlobalPkgs = true;
@@ -35,6 +39,7 @@
           };
           extraSpecialArgs = {
             pkgs = unstablePkgs;
+            nur = nurPkgs;
           };
         };
       };
@@ -49,6 +54,7 @@
             nixos-hardware.nixosModules.microsoft-surface-pro-intel
             # Add config.nur
             nur.nixosModules.nur
+            # nur.hmModules.nur
             home-manager.nixosModules.home-manager
             homeConf
           ];
