@@ -13,7 +13,7 @@
       # We need to manually `chsh` to the nix-version
       # bash because this option will point our
       # default shell to the macos-version bash
-      # shell = pkgs.bashInteractive;
+     # shell = pkgs.bashInteractive;
     };
   };
 
@@ -28,10 +28,12 @@
       package = pkgs.yabai;
       };
     */
+    /*
     skhd = {
       enable = true;
       package = pkgs.skhd;
     };
+    */
   };
 
   system = {
@@ -42,7 +44,7 @@
         InitialKeyRepeat = 10;
         KeyRepeat = 2;
         _HIHideMenuBar = true;
-        "com.apple.trackpad.scaling" = "2.50";
+        "com.apple.trackpad.scaling" = 2.5;
       };
       dock = {
         wvous-bl-corner = 4;
@@ -70,7 +72,5 @@
         { HIDKeyboardModifierMappingSrc = 30064771129; HIDKeyboardModifierMappingDst = 30064771296; }
       ];
     };
-
-    stateVersion = 4;
   };
 }

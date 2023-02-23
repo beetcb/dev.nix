@@ -7,7 +7,7 @@ let
 in
 {
   programs = enablePkgs {
-    nixvim = import ./files/.config/nvim/nixvim.nix enablePkgs pkgs;
+    # nixvim = import ./files/.config/nvim/nixvim.nix enablePkgs pkgs;
     git = {
       userName = user.name;
       userEmail = user.email;
@@ -32,7 +32,7 @@ in
     go = {
       goPath = "go";
     };
-    bash = { };
+    # bash = { };
     starship = { };
   };
 
@@ -41,11 +41,11 @@ in
   home.packages = with pkgs; [
     fd
     gh
-    xsel
+    # xsel
     ripgrep
     jless
     as-tree
-    nodejs-16_x
+nodejs-16_x
     # nodePackages.typescript
     yarn
     git-extras

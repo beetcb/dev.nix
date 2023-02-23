@@ -4,7 +4,7 @@
   nix = {
     gc = {
       automatic = true;
-      dates = "weekly";
+      # dates = "weekly";
       options = "--delete-older-than 7d";
     };
     settings.experimental-features = [ "nix-command" "flakes" ];
@@ -14,14 +14,14 @@
     fontDir.enable = true;
     fonts = with pkgs; [
       (nerdfonts.override {
-        fonts = [ "Hack" ];
+        fonts = [ "Hack"];
       })
     ];
   };
 
   environment =
     {
-      shells = [ pkgs.bashInteractive ];
+      # shells = [ pkgs.bashInteractive ];
       systemPackages =
         with pkgs; [
           alacritty
