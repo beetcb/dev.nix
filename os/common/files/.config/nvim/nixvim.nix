@@ -73,7 +73,7 @@ enablePkgs: pkgs:
         html = { };
         eslint = { };
         tsserver = { };
-        sumneko-lua = { };
+        lua-ls= { };
         jsonls = { };
         pyright = { };
       };

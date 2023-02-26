@@ -1,20 +1,21 @@
-{ config, pkgs, ... }:
-
+{ config, pkgs, nixvim, enablePkgs, ... }:
 {
   imports =
     [
       ../common/system.nix
+      #nixvim.nixDarwinModules.nixvim
     ];
 
 
   users.users = {
     beet = {
       home = "/Users/beet";
-      # We need to manually `chsh` to the nix-version
-      # bash because this option will point our
-      # default shell to the macos-version bash
-     # shell = pkgs.bashInteractive;
+      shell = pkgs.fish;
     };
+  };
+
+  programs = enablePkgs {
+    fish = { };
   };
 
   services = {
@@ -29,10 +30,10 @@
       };
     */
     /*
-    skhd = {
+      skhd = {
       enable = true;
       package = pkgs.skhd;
-    };
+      };
     */
   };
 
@@ -68,9 +69,11 @@
       enableKeyMapping = true;
       userKeyMapping = [
         # Swap CapsLock with Ctrl
-        { HIDKeyboardModifierMappingSrc = 30064771296; HIDKeyboardModifierMappingDst = 30064771129; }
-        { HIDKeyboardModifierMappingSrc = 30064771129; HIDKeyboardModifierMappingDst = 30064771296; }
+        # { HIDKeyboardModifierMappingSrc = 30064771296; HIDKeyboardModifierMappingDst = 30064771129; }
+        # { HIDKeyboardModifierMappingSrc = 30064771129; HIDKeyboardModifierMappingDst = 30064771296; }
       ];
     };
+    # We need to manually `chsh` to the nix-version shell
+    activationScripts.postActivation.text = ''sudo chsh -s ${pkgs.fish}/bin/fish beet'';
   };
 }

@@ -1,13 +1,12 @@
 user:
-{ config, pkgs, nvim, ... }:
+{ config, pkgs, nixvim, enablePkgs, ... }:
 with builtins;
 
 let
-  enablePkgs = { ... } @ args: mapAttrs (n: v: v // { enable = true; }) args;
+  nixvimPkg = (nixvim.legacyPackages.${pkgs.system}.makeNixvim ((import ../common/files/.config/nvim/nixvim.nix) enablePkgs pkgs));
 in
 {
   programs = enablePkgs {
-    # nixvim = import ./files/.config/nvim/nixvim.nix enablePkgs pkgs;
     git = {
       userName = user.name;
       userEmail = user.email;
@@ -32,20 +31,25 @@ in
     go = {
       goPath = "go";
     };
-    # bash = { };
+    fish = {
+      interactiveShellInit = ''
+        set fish_greeting  
+      '';
+    };
     starship = { };
   };
 
   home.username = user.name;
   home.homeDirectory = user.home;
   home.packages = with pkgs; [
+    nixvimPkg
     fd
     gh
     # xsel
     ripgrep
     jless
     as-tree
-nodejs-16_x
+    nodejs-16_x
     # nodePackages.typescript
     yarn
     git-extras
@@ -91,6 +95,7 @@ nodejs-16_x
     NPM_TOKEN = "";
 
     EDITOR = "nvim";
+    VISUAL = "nvim";
   };
 
   home.stateVersion = "23.05";

@@ -14,14 +14,14 @@
     fontDir.enable = true;
     fonts = with pkgs; [
       (nerdfonts.override {
-        fonts = [ "Hack"];
+        fonts = [ "Hack" ];
       })
     ];
   };
 
   environment =
     {
-      # shells = [ pkgs.bashInteractive ];
+      shells = [ pkgs.fish ];
       systemPackages =
         with pkgs; [
           alacritty
@@ -32,13 +32,11 @@
     };
 
   programs = {
-    bash = {
-      enableCompletion = true;
-    };
     gnupg.agent = {
       enable = true;
     };
   };
-
-  networking.hostName = "be";
+  networking = {
+    hostName = "be";
+  };
 }
