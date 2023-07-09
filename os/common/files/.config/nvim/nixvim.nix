@@ -1,4 +1,4 @@
-enablePkgs: pkgs:
+enablePkgs: pkgs :
 {
   extraConfigLua = builtins.readFile ./extra.lua;
   extraPackages = [ pkgs.xclip ];
@@ -18,7 +18,7 @@ enablePkgs: pkgs:
   plugins = enablePkgs {
     # Autocompletion
     nvim-cmp = {
-      auto_enable_sources = true;
+      autoEnableSources = true;
       # see -> https://github.com/pta2002/nixvim/blob/main/plugins/completion/nvim-cmp/cmp-helpers.nix#L12
       sources = [
         { name = "luasnip"; }
@@ -35,11 +35,8 @@ enablePkgs: pkgs:
         "<C-e>" = "cmp.mapping(cmp.mapping.abort())";
         "<CR>" = "cmp.mapping.confirm { select = true }";
       };
-      snippet.expand = ''
-        function(args)
-          require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-        end
-      '';
+      snippet.expand = "luasnip";
+      formatting.fields = [ "kind" "abbr" "menu" ];
       window.completion = {
         winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None";
         border = "single";
@@ -52,30 +49,24 @@ enablePkgs: pkgs:
     };
     lspkind = { };
     # Highlight & TreeSitter
-    treesitter = { 
-      disabledLanguages = ["ada"];
-    };
+    treesitter = { };
     # Git helpers
     gitsigns = { };
     # Status line
     lualine = { };
-    # Indent
-    #  indent-blankline = {
-    #    useTreesitter = true;
-    #    showEndOfLine = true;
-    #  };
     # Fuzzy finder
     telescope = { };
     # LSP
     lsp = {
       servers = enablePkgs {
+        bashls = { };
         gopls = { };
         rnix-lsp = { };
         rust-analyzer = { };
         html = { };
         eslint = { };
         tsserver = { };
-        lua-ls= { };
+        lua-ls = { };
         jsonls = { };
         pyright = { };
       };
@@ -126,7 +117,10 @@ enablePkgs: pkgs:
       currentLine = true;
     };
     null-ls = {
-      sources.formatting.prettier.enable = true;
+      sources.formatting = {
+        prettier.enable = true;
+        shfmt.enable = true;
+      };
       sources.diagnostics.shellcheck.enable = true;
     };
     nix = { };
@@ -136,7 +130,6 @@ enablePkgs: pkgs:
   };
   colorschemes = enablePkgs {
     nord = {
-      contrast = true;
       disable_background = true;
       italic = false;
     };

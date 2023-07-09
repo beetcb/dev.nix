@@ -3,7 +3,14 @@ user:
 with builtins;
 
 let
-  nixvimPkg = (nixvim.legacyPackages.${pkgs.system}.makeNixvim ((import ../common/files/.config/nvim/nixvim.nix) enablePkgs pkgs));
+  nixvimPkg = (nixvim.legacyPackages.${pkgs.system}.makeNixvimWithModule {
+    inherit pkgs;
+    module = {
+      config = (import ../common/files/.config/nvim/nixvim.nix) enablePkgs pkgs;
+    };
+  });
+
+
 in
 rec {
   programs = enablePkgs {
@@ -52,7 +59,7 @@ rec {
     ripgrep
     jless
     as-tree
-    nodejs-16_x
+    nodejs_20
     yarn
   ];
 

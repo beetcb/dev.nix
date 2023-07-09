@@ -16,5 +16,7 @@ in
     (import ../../common/user.nix user)
   ];
 
+  nixpkgs.config.allowUnfree = true;
+
   home.file = pkgs.lib.recursiveUpdate shardFiles files;
 }

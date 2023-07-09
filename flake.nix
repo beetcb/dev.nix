@@ -25,16 +25,18 @@
     let
       system = "x86_64-linux";
       enablePkgs = { ... } @ args: builtins.mapAttrs (n: v: v // { enable = true; }) args;
-      unstablePkgs = import nixos-unstable {
-        inherit system;
+
+      unstablePkgs = system: import nixos-unstable {
+        system = system;
         config = { allowUnfree = true; };
       };
 
       nurPkgs = import nur {
-        nurpkgs = unstablePkgs;
-        pkgs = unstablePkgs;
+        nurpkgs = unstablePkgs system;
+        pkgs = unstablePkgs system;
       };
-      homeConf = homeConfFile: {
+
+      homeConf = homeConfFile: system: {
         home-manager = {
           useGlobalPkgs = true;
           useUserPackages = true;
@@ -44,6 +46,7 @@
           extraSpecialArgs = {
             nixvim = nixvim;
             enablePkgs = enablePkgs;
+            pkgs = unstablePkgs system;
             nur = nurPkgs;
           };
         };
@@ -54,6 +57,7 @@
         be = nixos.lib.nixosSystem rec {
           inherit system;
           specialArgs = { inherit nixvim; inherit enablePkgs; };
+
           modules = [
             ./os/nixos/configuration.nix
             # Custom hardware kernel
@@ -62,7 +66,7 @@
             nur.nixosModules.nur
             # nur.hmModules.nur
             home-manager.nixosModules.home-manager
-            (homeConf ./os/nixos/users/beet.nix)
+            (homeConf ./os/nixos/users/beet.nix system)
           ];
         };
       };
@@ -74,7 +78,7 @@
           modules = [
             ./os/macos/configuration.nix
             home-manager.darwinModules.home-manager
-            (homeConf ./os/macos/users/beet.nix)
+            (homeConf ./os/macos/users/beet.nix system)
           ];
         };
 
@@ -84,7 +88,7 @@
           modules = [
             ./os/macos/configuration.nix
             home-manager.darwinModules.home-manager
-            (homeConf ./os/macos/users/beet.nix)
+            (homeConf ./os/macos/users/beet.nix system)
           ];
         };
       };
