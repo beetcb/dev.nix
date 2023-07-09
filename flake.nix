@@ -77,6 +77,16 @@
             (homeConf ./os/macos/users/beet.nix)
           ];
         };
+
+        be_aarch = darwin.lib.darwinSystem rec {
+          system = "aarch64-darwin";
+          specialArgs = { inherit nixvim; inherit enablePkgs; };
+          modules = [
+            ./os/macos/configuration.nix
+            home-manager.darwinModules.home-manager
+            (homeConf ./os/macos/users/beet.nix)
+          ];
+        };
       };
     };
 }

@@ -5,7 +5,7 @@ with builtins;
 let
   nixvimPkg = (nixvim.legacyPackages.${pkgs.system}.makeNixvim ((import ../common/files/.config/nvim/nixvim.nix) enablePkgs pkgs));
 in
-{
+rec {
   programs = enablePkgs {
     git = {
       userName = user.name;
@@ -26,7 +26,9 @@ in
       };
     };
     exa = { };
-    fzf = { };
+    fzf = {
+      enableFishIntegration = true;
+    };
     zoxide = { };
     go = {
       goPath = "go";
@@ -36,7 +38,9 @@ in
         set fish_greeting  
       '';
     };
-    starship = { };
+    starship = { 
+      enableFishIntegration = true;
+    };
   };
 
   home.username = user.name;
@@ -63,6 +67,7 @@ in
     ls = "exa";
     ll = "exa -l";
     cat = "bat";
+    git = "${pkgs.git}/bin/git";
     vmshare = "vmhgfs-fuse .host:/ /mnt/";
     os-rebuild = pkgs.lib.optionalString pkgs.stdenv.isLinux "sudo "
       +

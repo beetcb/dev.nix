@@ -52,7 +52,9 @@ enablePkgs: pkgs:
     };
     lspkind = { };
     # Highlight & TreeSitter
-    treesitter = { };
+    treesitter = { 
+      disabledLanguages = ["ada"];
+    };
     # Git helpers
     gitsigns = { };
     # Status line

@@ -21,7 +21,8 @@
 
   environment =
     {
-      shells = [ pkgs.fish ];
+      shells = [ pkgs.fish pkgs.bash ];
+           loginShell = pkgs.fish;
       systemPackages =
         with pkgs; [
           alacritty
@@ -29,12 +30,10 @@
           zip
           gnupg
         ];
+ 
     };
 
   programs = {
-    gnupg.agent = {
-      enable = true;
-    };
   };
   networking = {
     hostName = "be";
