@@ -38,7 +38,7 @@ rec {
         set fish_greeting  
       '';
     };
-    starship = { 
+    starship = {
       enableFishIntegration = true;
     };
   };
@@ -49,15 +49,11 @@ rec {
     nixvimPkg
     fd
     gh
-    # xsel
     ripgrep
     jless
     as-tree
     nodejs-16_x
-    # nodePackages.typescript
     yarn
-    git-extras
-    du-dust
   ];
 
   home.shellAliases = {
@@ -65,10 +61,10 @@ rec {
     v = "nvim";
     l = "exa -a";
     ls = "exa";
+    cd = "z";
     ll = "exa -l";
     cat = "bat";
     git = "${pkgs.git}/bin/git";
-    vmshare = "vmhgfs-fuse .host:/ /mnt/";
     os-rebuild = pkgs.lib.optionalString pkgs.stdenv.isLinux "sudo "
       +
       "${user.rebuildSysName}-rebuild switch --flake ${user.flakeRepo}";
@@ -78,7 +74,7 @@ rec {
       os-rebuild
     '';
     os-cleanup = ''
-      sudo rm -f /nix/var/nix/gcroots/auto/* &&
+      sudo rm -f "/nix/var/nix/gcroots/auto/*" &&
       sudo nix-collect-garbage -d && 
       os-rebuild
     '';

@@ -90,3 +90,8 @@ My daily development environment, running on VMware Workstation | VMware Fusion 
 
 - For system pkgs: nixos latest statble channel
 - For user pkgs: mixin of nixos latest unstatble & statble channel
+
+# Quick options refs
+- nix-darwin https://daiderd.com/nix-darwin/manual/index.html
+- home-manager https://nix-community.github.io/home-manager/options.html
+- nixvim https://pta2002.github.io/nixvim/

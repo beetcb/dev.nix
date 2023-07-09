@@ -22,7 +22,7 @@
   environment =
     {
       shells = [ pkgs.fish pkgs.bash ];
-           loginShell = pkgs.fish;
+      loginShell = pkgs.fish;
       systemPackages =
         with pkgs; [
           alacritty
@@ -30,11 +30,24 @@
           zip
           gnupg
         ];
- 
+
     };
 
-  programs = {
+  programs = { };
+
+  homebrew = {
+    enable = true;
+    brews = [
+      # /usr/bin/git was managed by Apple SIP, can't be removed,
+      # nix bin path is after the /usr/bin/, can't be picked up,
+      # well home bin path is before the /usr/bin/.
+      "git"
+    ];
+    casks = [
+      "raycast"
+    ];
   };
+
   networking = {
     hostName = "be";
   };
