@@ -1,4 +1,5 @@
 enablePkgs: pkgs :
+# see -> https://pta2002.github.io/nixvim/
 {
   extraConfigLua = builtins.readFile ./extra.lua;
   extraPackages = [ pkgs.xclip ];

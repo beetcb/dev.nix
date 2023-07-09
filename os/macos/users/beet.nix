@@ -3,6 +3,7 @@
 let
   user = rec {
     name = "beet";
+    gitUsername = "alexphzhou";
     home = "/Users/${name}";
     email = "alexphzhou@tencent.com";
     flakeRepo = "/etc/build";
@@ -15,8 +16,6 @@ in
   imports = [
     (import ../../common/user.nix user)
   ];
-
-  nixpkgs.config.allowUnfree = true;
 
   home.file = pkgs.lib.recursiveUpdate shardFiles files;
 }

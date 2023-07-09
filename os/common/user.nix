@@ -15,7 +15,7 @@ in
 rec {
   programs = enablePkgs {
     git = {
-      userName = user.name;
+      userName = user.gitUsername or user.name;
       userEmail = user.email;
       extraConfig = {
         init = {
@@ -44,6 +44,14 @@ rec {
       interactiveShellInit = ''
         set fish_greeting  
       '';
+    };
+    tmux = {
+      plugins = with pkgs; [
+        {
+          plugin = tmuxPlugins.nord;
+          extraConfig = "set -g @plugin 'arcticicestudio/nord-tmux'";
+        }
+      ];
     };
     starship = {
       enableFishIntegration = true;
