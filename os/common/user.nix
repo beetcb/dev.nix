@@ -87,6 +87,7 @@ rec {
     as-tree
     nodejs_20
     yarn
+    npm_whistle
   ];
 
   home.shellAliases = {

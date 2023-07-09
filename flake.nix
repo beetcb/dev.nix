@@ -28,6 +28,11 @@
       pkgsWithUnfree = system: import nixos-unstable {
         system = system;
         config = { allowUnfree = true; };
+        overlays = [
+          (self: prev: {
+            npm_whistle = self.callPackage ./overlays/npm-whistle.nix { };
+          })
+        ];
       };
       nurPkgs = system: import nur {
         nurpkgs = pkgsWithUnfree system;

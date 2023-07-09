@@ -44,7 +44,7 @@ My daily development environment, running on VMware Workstation | VMware Fusion 
   nix-shell -p nixFlakes git
 
   # clone repo using git
-  git clone git@github.com:beetcb/dev.nix.git /etc/build/
+  git clone https://github.com/beetcb/dev.nix.git /etc/build/
 
   # replace hardware configruation with newly generated one(can be safly ignored on darwin)
   cp /mnt/etc/nixos/hardware-configuration.nix /etc/build/os/nixos/hardware.nix
@@ -54,6 +54,13 @@ My daily development environment, running on VMware Workstation | VMware Fusion 
   sudo nixos-install --impure --flake /etc/build
   ## darwin
   darwin-rebuild switch --flake /etc/build
+
+  # ssh stuff
+  ssh-keygen -t ed25519 -C "$($ git config user.email)"
+  cat ~/.ssh/id_ed25519.pub
+  ## time to sync your configs to remote git hosting service like github.com,
+  ## you can clone my repo and reset remote url(to your cloned repo ssh url) to quickly achieve this.
+  git remote set-url origin git@github.com:beetcb/dev.nix.git
   ```
 
 # Nix/NixOS/VM Gotchas
@@ -67,31 +74,15 @@ My daily development environment, running on VMware Workstation | VMware Fusion 
   1. [Disable 3D acceleration temporarily](https://communities.vmware.com/t5/VMware-Workstation-Pro/ISBRendererComm-Lost-connection-to-mksSandbox-and-MKS/td-p/2838888), weird bug on vmware workstation.
   2. [Defragmenting and shrinking on guest machine](https://superuser.com/a/1116213)
 
-- OS management helper scripts
-  ```bash
-  home.shellAliases = {
-    vmshare = "vmhgfs-fuse .host:/ /mnt/";
-    os-rebuild = "sudo nixos-rebuild switch --flake ${os}#be";
-    os-update = ''
-      cd ${os} &&
-      nix flake update &&
-      os-rebuild
-    '';
-    os-cleanup = ''
-      sudo rm -f /nix/var/nix/gcroots/auto/* &&
-      nix-collect-garbage -d &&
-      sudo nix-collect-garbage -d &&
-      os-rebuild
-    '';
-  };
-  ```
-
 # Channels
+
+> Update: use unstatble channel for all!
 
 - For system pkgs: nixos latest statble channel
 - For user pkgs: mixin of nixos latest unstatble & statble channel
 
 # Quick options refs
+
 - nix-darwin https://daiderd.com/nix-darwin/manual/index.html
 - home-manager https://nix-community.github.io/home-manager/options.html
 - nixvim https://pta2002.github.io/nixvim/
