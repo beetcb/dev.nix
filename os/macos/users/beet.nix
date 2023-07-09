@@ -8,6 +8,7 @@ let
     email = "alexphzhou@tencent.com";
     flakeRepo = "/etc/build";
     rebuildSysName = "darwin";
+    rebuildDeviceName = "be_aarch";
   };
   files = import ./files/files.nix;
   shardFiles = import ../../common/files/files.nix;

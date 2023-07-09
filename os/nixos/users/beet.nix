@@ -7,6 +7,7 @@ let
     email = "63141491+beetcb@users.noreply.github.com";
     flakeRepo = "/etc/build";
     rebuildSysName = "nixos";
+    rebuildDeviceName = "be";
   };
   files = import ./files/files.nix;
   shardFiles = import ../../common/files/files.nix;

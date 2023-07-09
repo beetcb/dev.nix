@@ -23,17 +23,15 @@
   outputs =
     { home-manager, nixos, nixos-unstable, nixos-hardware, nur, nixvim, darwin, ... }:
     let
-      system = "x86_64-linux";
-      enablePkgs = { ... } @ args: builtins.mapAttrs (n: v: v // { enable = true; }) args;
 
-      unstablePkgs = system: import nixos-unstable {
+      enablePkgs = { ... } @ args: builtins.mapAttrs (n: v: v // { enable = true; }) args;
+      pkgsWithUnfree = system: import nixos-unstable {
         system = system;
         config = { allowUnfree = true; };
       };
-
-      nurPkgs = import nur {
-        nurpkgs = unstablePkgs system;
-        pkgs = unstablePkgs system;
+      nurPkgs = system: import nur {
+        nurpkgs = pkgsWithUnfree system;
+        pkgs = pkgsWithUnfree system;
       };
 
       homeConf = homeConfFile: system: {
@@ -46,8 +44,8 @@
           extraSpecialArgs = {
             nixvim = nixvim;
             enablePkgs = enablePkgs;
-            pkgs = unstablePkgs system;
-            nur = nurPkgs;
+            pkgs = pkgsWithUnfree system;
+            nur = nurPkgs system;
           };
         };
       };
@@ -55,9 +53,8 @@
     {
       nixosConfigurations = {
         be = nixos.lib.nixosSystem rec {
-          inherit system;
+          system = "x86_64-linux";
           specialArgs = { inherit nixvim; inherit enablePkgs; };
-
           modules = [
             ./os/nixos/configuration.nix
             # Custom hardware kernel

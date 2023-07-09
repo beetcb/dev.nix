@@ -44,6 +44,24 @@ rec {
       interactiveShellInit = ''
         set fish_greeting  
       '';
+
+      functions = {
+        os-rebuild = pkgs.lib.optionalString pkgs.stdenv.isLinux "sudo "
+          +
+          "${user.rebuildSysName}-rebuild switch --flake ${user.flakeRepo}#${user.rebuildDeviceName}";
+
+        os-update = ''
+          cd ${user.flakeRepo} &&
+          nix flake update &&
+          os-rebuild
+        '';
+
+        os-cleanup = ''
+          sudo rm -f "/nix/var/nix/gcroots/auto/*" &&
+          sudo nix-collect-garbage -d && 
+          os-rebuild
+        '';
+      };
     };
     tmux = {
       plugins = with pkgs; [
@@ -80,19 +98,19 @@ rec {
     ll = "exa -l";
     cat = "bat";
     git = "${pkgs.git}/bin/git";
-    os-rebuild = pkgs.lib.optionalString pkgs.stdenv.isLinux "sudo "
-      +
-      "${user.rebuildSysName}-rebuild switch --flake ${user.flakeRepo}";
-    os-update = ''
-      cd ${user.flakeRepo} &&
-      nix flake update &&
-      os-rebuild
-    '';
-    os-cleanup = ''
-      sudo rm -f "/nix/var/nix/gcroots/auto/*" &&
-      sudo nix-collect-garbage -d && 
-      os-rebuild
-    '';
+#     os-rebuild = pkgs.lib.optionalString pkgs.stdenv.isLinux "sudo "
+#       +
+#       "${user.rebuildSysName}-rebuild switch --flake ${user.flakeRepo}#${user.rebuildDeviceName}";
+#     os-update = ''
+#       cd ${user.flakeRepo} &&
+#       nix flake update &&
+#       os-rebuild
+#     '';
+#     os-cleanup = ''
+#       sudo rm -f "/nix/var/nix/gcroots/auto/*" &&
+#       sudo nix-collect-garbage -d && 
+#       os-rebuild
+#     '';
   };
 
   home.sessionPath = [
