@@ -59,4 +59,23 @@
     # We need to manually `chsh` to the nix-version shell
     activationScripts.postActivation.text = ''sudo chsh -s ${pkgs.fish}/bin/fish beet'';
   };
+
+  homebrew = {
+    enable = true;
+    brews = [
+      # /usr/bin/git was managed by Apple SIP, can't be removed,
+      # nix bin path is after the /usr/bin/, can't be picked up,
+      # well home bin path is before the /usr/bin/.
+      "git"
+    ];
+    casks = [
+      "google-chrome"
+      "raycast"
+    ];
+    masApps = {
+      "wecom-business-im-work-tools" = 1189898970;
+    };
+  };
+
+
 }
