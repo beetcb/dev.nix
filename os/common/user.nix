@@ -43,6 +43,7 @@ rec {
     fish = {
       interactiveShellInit = ''
         set fish_greeting  
+        eval "$(/opt/homebrew/bin/brew shellenv)"
       '';
 
       functions = {
@@ -64,12 +65,17 @@ rec {
       };
     };
     tmux = {
+      mouse = true;
+      keyMode = "vi";
       plugins = with pkgs; [
         {
           plugin = tmuxPlugins.nord;
           extraConfig = "set -g @plugin 'arcticicestudio/nord-tmux'";
         }
       ];
+      extraConfig = ''
+        bind-key c command-prompt -p "window name:" "new-window; rename-window '%%'"
+      '';
     };
     starship = {
       enableFishIntegration = true;
@@ -99,19 +105,19 @@ rec {
     ll = "exa -l";
     cat = "bat";
     git = "${pkgs.git}/bin/git";
-#     os-rebuild = pkgs.lib.optionalString pkgs.stdenv.isLinux "sudo "
-#       +
-#       "${user.rebuildSysName}-rebuild switch --flake ${user.flakeRepo}#${user.rebuildDeviceName}";
-#     os-update = ''
-#       cd ${user.flakeRepo} &&
-#       nix flake update &&
-#       os-rebuild
-#     '';
-#     os-cleanup = ''
-#       sudo rm -f "/nix/var/nix/gcroots/auto/*" &&
-#       sudo nix-collect-garbage -d && 
-#       os-rebuild
-#     '';
+    #     os-rebuild = pkgs.lib.optionalString pkgs.stdenv.isLinux "sudo "
+    #       +
+    #       "${user.rebuildSysName}-rebuild switch --flake ${user.flakeRepo}#${user.rebuildDeviceName}";
+    #     os-update = ''
+    #       cd ${user.flakeRepo} &&
+    #       nix flake update &&
+    #       os-rebuild
+    #     '';
+    #     os-cleanup = ''
+    #       sudo rm -f "/nix/var/nix/gcroots/auto/*" &&
+    #       sudo nix-collect-garbage -d && 
+    #       os-rebuild
+    #     '';
   };
 
   home.sessionPath = [

@@ -1,3 +1,4 @@
+# see -> https://daiderd.com/nix-darwin/manual/index.html
 { config, pkgs, nixvim, enablePkgs, ... }:
 {
   imports =
@@ -23,14 +24,15 @@
   system = {
     defaults = {
       NSGlobalDomain = {
+        AppleInterfaceStyle = "Dark";
         AppleShowAllExtensions = true;
         AppleShowAllFiles = true;
         InitialKeyRepeat = 10;
         KeyRepeat = 2;
-        _HIHideMenuBar = true;
         "com.apple.trackpad.scaling" = 2.5;
       };
       dock = {
+        autohide = true;
         wvous-bl-corner = 4;
         wvous-br-corner = 1;
         wvous-tl-corner = 3;
@@ -46,7 +48,6 @@
         Clicking = true;
         TrackpadThreeFingerDrag = true;
       };
-
     };
     keyboard = {
       enableKeyMapping = true;
@@ -67,14 +68,22 @@
       # nix bin path is after the /usr/bin/, can't be picked up,
       # well home bin path is before the /usr/bin/.
       "git"
+      "egoist/tap/dum"
     ];
     casks = [
       "google-chrome"
       "raycast"
+      # https://apple.stackexchange.com/a/372964
+      "background-music"
+      "warp"
     ];
     masApps = {
       "wecom-business-im-work-tools" = 1189898970;
+      "wechat" = 836500024;
     };
+    taps = [
+      "egoist/tap"
+    ];
   };
 
 

@@ -1,5 +1,5 @@
-enablePkgs: pkgs :
-# see -> https://pta2002.github.io/nixvim/
+enablePkgs: pkgs:
+# see -> https://nix-community.github.io/nixvim/
 {
   extraConfigLua = builtins.readFile ./extra.lua;
   extraPackages = [ pkgs.xclip ];
@@ -34,6 +34,7 @@ enablePkgs: pkgs :
         "<C-b>" = ''cmp.mapping(cmp.mapping.scroll_docs(-1), { "i" })'';
         "<C-f>" = ''cmp.mapping(cmp.mapping.scroll_docs(1), { "i" })'';
         "<C-e>" = "cmp.mapping(cmp.mapping.abort())";
+        "<C-l>" = "cmp.mapping(cmp.mapping.complete())";
         "<CR>" = "cmp.mapping.confirm { select = true }";
       };
       snippet.expand = "luasnip";
@@ -69,6 +70,7 @@ enablePkgs: pkgs :
         tsserver = { };
         lua-ls = { };
         jsonls = { };
+        pylsp = { };
         pyright = { };
       };
       onAttach = ''
@@ -127,7 +129,11 @@ enablePkgs: pkgs :
     nix = { };
     nvim-autopairs = { };
     surround = { };
-    nvim-tree = { };
+    nvim-tree = {
+      updateFocusedFile = {
+        enable = true;
+      };
+    };
   };
   colorschemes = enablePkgs {
     nord = {
