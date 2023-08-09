@@ -76,6 +76,7 @@
       # https://apple.stackexchange.com/a/372964
       "background-music"
       "warp"
+      "logseq"
     ];
     masApps = {
       "wecom-business-im-work-tools" = 1189898970;

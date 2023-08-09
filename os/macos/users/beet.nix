@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, ... }@args:
 
 let
   user = rec {
@@ -12,11 +12,17 @@ let
   };
   files = import ./files/files.nix;
   shardFiles = import ../../common/files/files.nix;
+  shardUserConf =
+    (import ../../common/user.nix user) args;
 in
 {
   imports = [
-    (import ../../common/user.nix user)
+    shardUserConf
   ];
 
   home.file = pkgs.lib.recursiveUpdate shardFiles files;
+
+  home.packages = with pkgs; [
+    volta
+  ] ++ shardUserConf.home.packages;
 }
