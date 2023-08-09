@@ -1,4 +1,5 @@
 user:
+# see -> https://nix-community.github.io/home-manager/
 { config, pkgs, nixvim, enablePkgs, ... }:
 with builtins;
 
@@ -9,8 +10,6 @@ let
       config = (import ../common/files/.config/nvim/nixvim.nix) enablePkgs pkgs;
     };
   });
-
-
 in
 rec {
   programs = enablePkgs {
@@ -91,8 +90,13 @@ rec {
     ripgrep
     jless
     as-tree
-    nodejs_20
     yarn
+
+    # pkgs need manually setup, and not configurable by using home-manager
+    ## see -> https://github.com/NixOS/nixpkgs/pull/217233#issuecomment-1487646724
+    volta
+
+    # overlays
     npm_whistle
   ];
 
@@ -105,22 +109,10 @@ rec {
     ll = "exa -l";
     cat = "bat";
     git = "${pkgs.git}/bin/git";
-    #     os-rebuild = pkgs.lib.optionalString pkgs.stdenv.isLinux "sudo "
-    #       +
-    #       "${user.rebuildSysName}-rebuild switch --flake ${user.flakeRepo}#${user.rebuildDeviceName}";
-    #     os-update = ''
-    #       cd ${user.flakeRepo} &&
-    #       nix flake update &&
-    #       os-rebuild
-    #     '';
-    #     os-cleanup = ''
-    #       sudo rm -f "/nix/var/nix/gcroots/auto/*" &&
-    #       sudo nix-collect-garbage -d && 
-    #       os-rebuild
-    #     '';
   };
 
   home.sessionPath = [
+    "$VOLTA_HOME/bin"
     "$HOME/.cargo/bin"
     "$HOME/go/bin"
     "$HOME/.local/bin"
@@ -137,6 +129,9 @@ rec {
 
     EDITOR = "nvim";
     VISUAL = "nvim";
+
+    # VOLTA JS Launcher
+    VOLTA_HOME = "$HOME/.volta";
   };
 
   home.stateVersion = "23.05";
