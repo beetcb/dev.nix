@@ -77,6 +77,7 @@
       "background-music"
       "warp"
       "logseq"
+      "licecap"
     ];
     masApps = {
       "wecom-business-im-work-tools" = 1189898970;

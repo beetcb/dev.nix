@@ -122,6 +122,7 @@ enablePkgs: pkgs:
     null-ls = {
       sources.formatting = {
         prettier.enable = true;
+        # eslint.enable = true;
         shfmt.enable = true;
       };
       sources.diagnostics.shellcheck.enable = true;

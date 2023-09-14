@@ -31,7 +31,9 @@ rec {
         style = "plain";
       };
     };
-    exa = { };
+    eza = { 
+      enableAliases = true;
+    };
     fzf = {
       enableFishIntegration = true;
     };
@@ -94,6 +96,7 @@ rec {
 
     # pkgs need manually setup, and not configurable by using home-manager
     ## see -> https://github.com/NixOS/nixpkgs/pull/217233#issuecomment-1487646724
+    bun
     volta
 
     # overlays
@@ -103,10 +106,7 @@ rec {
   home.shellAliases = {
     g = "git";
     v = "nvim";
-    l = "exa -a";
-    ls = "exa";
     cd = "z";
-    ll = "exa -l";
     cat = "bat";
     git = "${pkgs.git}/bin/git";
   };
