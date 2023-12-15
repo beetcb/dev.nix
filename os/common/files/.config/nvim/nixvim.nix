@@ -51,27 +51,31 @@ enablePkgs: pkgs:
     };
     lspkind = { };
     # Highlight & TreeSitter
-    treesitter = { };
+    treesitter = {
+      ensureInstalled = [ "embedded_template" ];
+    };
     # Git helpers
-    gitsigns = { };
+    gitsigns = {
+      currentLineBlame = true;
+    };
     # Status line
     lualine = { };
     # Fuzzy finder
     telescope = { };
+    # Diagnostics panel
+    trouble = { };
     # LSP
     lsp = {
       servers = enablePkgs {
-        bashls = { };
         gopls = { };
         rnix-lsp = { };
-        rust-analyzer = { };
+        # rust-analyzer = { };
         html = { };
+        cssls = { };
         eslint = { };
         tsserver = { };
-        lua-ls = { };
+        # lua-ls = { };
         jsonls = { };
-        pylsp = { };
-        pyright = { };
       };
       onAttach = ''
         -- Enable completion triggered by <c-x><c-o>
@@ -102,6 +106,7 @@ enablePkgs: pkgs:
             return true
           end,
           bufnr = bufnr, 
+          async = true,
         } end, bufopts)
         vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
 
@@ -119,11 +124,12 @@ enablePkgs: pkgs:
       enable = true;
       currentLine = true;
     };
-    null-ls = {
+    none-ls = {
       sources.formatting = {
-        prettier.enable = true;
-        # eslint.enable = true;
+        # prettier.enable = true;
+        eslint.enable = true;
         shfmt.enable = true;
+        markdownlint.enable = true;
       };
       sources.diagnostics.shellcheck.enable = true;
     };

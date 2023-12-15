@@ -24,5 +24,6 @@ in
 
   home.packages = with pkgs; [
     volta
+    vscode
   ] ++ shardUserConf.home.packages;
 }
