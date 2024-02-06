@@ -81,7 +81,6 @@ enablePkgs: pkgs:
         -- Enable completion triggered by <c-x><c-o>
         vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
         
-        -- Mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         local bufopts = { noremap=true, silent=true, buffer=bufnr }
         vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
@@ -97,20 +96,9 @@ enablePkgs: pkgs:
         vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
         vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
         vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-        vim.keymap.set('n', '<space>cf', function() vim.lsp.buf.format {
-          filter = function(client)
-          -- Disable tsserver format
-            if client.name == "tsserver" then
-              return false
-            end
-            return true
-          end,
-          bufnr = bufnr, 
-          async = true,
-        } end, bufopts)
+        vim.keymap.set('n', '<space>cf', vim.lsp.buf.format, bufopts)
         vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
 
-        -- Mappings.
         -- See `:help vim.diagnostic.*` for documentation on any of the below functions
         local opts = { noremap=true, silent=true }
         vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
@@ -126,7 +114,10 @@ enablePkgs: pkgs:
     };
     none-ls = {
       sources.formatting = {
-        # prettier.enable = true;
+        prettier = {
+          enable = true;
+          disableTsServerFormatter = true;
+        };
         eslint.enable = true;
         shfmt.enable = true;
         markdownlint.enable = true;

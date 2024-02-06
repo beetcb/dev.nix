@@ -1,3 +1,4 @@
+# see -> https://daiderd.com/nix-darwin/manual/index.html
 { config, pkgs, ... }:
 {
   nix = {
@@ -29,7 +30,9 @@
           zip
           gnupg
         ];
-
+      loginShellInit = ''
+        w2 start
+        '';
     };
 
   programs = { };
