@@ -47,6 +47,7 @@ rec {
         eval "$(/opt/homebrew/bin/brew shellenv)"
       '';
 
+
       functions = {
         os-rebuild = pkgs.lib.optionalString pkgs.stdenv.isLinux "sudo "
           +

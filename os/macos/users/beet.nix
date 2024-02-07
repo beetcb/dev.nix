@@ -25,5 +25,7 @@ in
   home.packages = with pkgs; [
     volta
     vscode
+    miniserve
   ] ++ shardUserConf.home.packages;
+
 }

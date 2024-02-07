@@ -30,9 +30,6 @@
           zip
           gnupg
         ];
-      loginShellInit = ''
-        w2 start
-        '';
     };
 
   programs = { };
