@@ -13,6 +13,8 @@ const RULES = [
   { pattern: /(?:^|\.)netflix\.com$/, proxy: "clash" },
   { pattern: /^glados\.network$/, proxy: "clash" },
   { pattern: /^bard\.google\.com$/, proxy: "clash" },
+  { pattern: /^gemini\.google\.com$/, proxy: "clash" },
+  { pattern: /^devv\.ai$/, proxy: "clash" },
 
   { pattern: /(?:^|\.)tencent\.com$/, proxy: "whistle" },
   { pattern: /(?:^|\.)w?oa\.com$/, proxy: "whistle" },

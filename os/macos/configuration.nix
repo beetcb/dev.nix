@@ -88,9 +88,9 @@
     ];
   };
 
-  environment.loginShellInit = ''
-  w2 --help
-  miniserve .config/miniserve/hostdir --port 7891 &
-  '';
+  # environment.loginShellInit = ''
+  # w2 --help
+  # miniserve .config/miniserve/hostdir --port 7891 &
+  # '';
 
 }

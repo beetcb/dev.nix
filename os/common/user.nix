@@ -110,6 +110,7 @@ rec {
     cd = "z";
     cat = "bat";
     git = "${pkgs.git}/bin/git";
+    poweron = "w2 start && miniserve .config/miniserve/hostdir --port 7891";
   };
 
   home.sessionPath = [
