@@ -22,10 +22,23 @@ in
 
   home.file = pkgs.lib.recursiveUpdate shardFiles files;
 
+  programs = pkgs.lib.recursiveUpdate
+    {
+      # Use homebrew instead
+      # vscode = {
+      #   enable = true;
+      #   extensions = with pkgs.vscode-extensions; [
+      #     dbaeumer.vscode-eslint
+      #     
+      #     bbenoist.nix
+      #     tamasfe.even-better-toml
+      #   ];
+      # };
+    }
+    shardUserConf.programs;
+
   home.packages = with pkgs; [
     volta
-    vscode
     miniserve
   ] ++ shardUserConf.home.packages;
-
 }

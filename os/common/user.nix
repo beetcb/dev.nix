@@ -32,7 +32,6 @@ rec {
       };
     };
     eza = { 
-      enableAliases = true;
     };
     fzf = {
       enableFishIntegration = true;
@@ -99,6 +98,7 @@ rec {
     ## see -> https://github.com/NixOS/nixpkgs/pull/217233#issuecomment-1487646724
     bun
     volta
+    deno
 
     # overlays
     npm_whistle
@@ -107,7 +107,7 @@ rec {
   home.shellAliases = {
     g = "git";
     v = "nvim";
-    cd = "z";
+    # cd = "z";
     cat = "bat";
     git = "${pkgs.git}/bin/git";
     poweron = "w2 start && miniserve .config/miniserve/hostdir --port 7891";
