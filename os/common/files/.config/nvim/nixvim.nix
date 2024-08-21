@@ -7,7 +7,7 @@ enablePkgs: pkgs:
     vim-sleuth
   ];
   globals.mapleader = " ";
-  options = {
+  opts = {
     shiftwidth = 2;
     smartindent = true;
     expandtab = true;
@@ -15,38 +15,32 @@ enablePkgs: pkgs:
     smartcase = true;
     ignorecase = true;
     number = true;
+    # background = "light";
   };
   plugins = enablePkgs {
     # Autocompletion
-    nvim-cmp = {
+    cmp = {
       autoEnableSources = true;
-      # see -> https://github.com/pta2002/nixvim/blob/main/plugins/completion/nvim-cmp/cmp-helpers.nix#L12
-      # settings.sources = [
-      #   { name = "luasnip"; }
-      #   { name = "nvim_lsp"; }
-      #   { name = "nvim_lua"; }
-      #   { name = "path"; }
-      #   { name = "buffer"; }
-      # ];
-      # see -> https://github.com/hrsh7th/nvim-cmp/blob/main/lua/cmp/config/mapping.lua#L36
-      # mappingPresets = [ "insert" "cmdline" ];
-      mapping = {
-        "<C-b>" = ''cmp.mapping(cmp.mapping.scroll_docs(-1), { "i" })'';
-        "<C-f>" = ''cmp.mapping(cmp.mapping.scroll_docs(1), { "i" })'';
-        "<C-e>" = "cmp.mapping(cmp.mapping.abort())";
-        "<C-l>" = "cmp.mapping(cmp.mapping.complete())";
-        "<CR>" = "cmp.mapping.confirm { select = true }";
-      };
-      # snippet.expand = "luasnip";
-      formatting.fields = [ "kind" "abbr" "menu" ];
-      window.completion = {
-        winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None";
-        border = "single";
-      };
-
-      window.documentation = {
-        winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None";
-        border = "single";
+      enable = true;
+      settings = {
+        mapping = {
+          "<C-b>" = ''cmp.mapping(cmp.mapping.scroll_docs(-1), { "i" })'';
+          "<C-f>" = ''cmp.mapping(cmp.mapping.scroll_docs(1), { "i" })'';
+          "<C-e>" = "cmp.mapping(cmp.mapping.abort())";
+          "<C-l>" = "cmp.mapping(cmp.mapping.complete())";
+          "<CR>" = "cmp.mapping.confirm { select = true }";
+        };
+        formatting.fields = [ "kind" "abbr" "menu" ];
+        window = {
+          completion = {
+            winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None";
+            border = "single";
+          };
+          documentation = {
+            winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None";
+            border = "single";
+          };
+        };
       };
     };
     lspkind = { };
@@ -56,7 +50,7 @@ enablePkgs: pkgs:
     };
     # Git helpers
     gitsigns = {
-      currentLineBlame = true;
+      settings.current_line_blame = true;
     };
     # Status line
     lualine = { };
@@ -68,7 +62,7 @@ enablePkgs: pkgs:
     lsp = {
       servers = enablePkgs {
         gopls = { };
-        rnix-lsp = { };
+        # rnix-lsp = { };
         # rust-analyzer = { };
         html = { };
         cssls = { };
@@ -76,6 +70,7 @@ enablePkgs: pkgs:
         tsserver = { };
         # lua-ls = { };
         jsonls = { };
+        efm = {};
       };
       onAttach = ''
         -- Enable completion triggered by <c-x><c-o>
@@ -112,18 +107,19 @@ enablePkgs: pkgs:
       enable = true;
       currentLine = true;
     };
-    none-ls = {
-      sources.formatting = {
-        prettier = {
-          enable = true;
-          disableTsServerFormatter = true;
+
+    efmls-configs = {
+      setup = {
+        nix = {
+          formatter = "nixfmt";
         };
-        # eslint.enable = true;
-        shfmt.enable = true;
-        markdownlint.enable = true;
+        typescript = {
+          formatter = "eslint_d";
+          linter = "eslint_d";
+        };
       };
-      # sources.diagnostics.shellcheck.enable = true;
     };
+
     nix = { };
     nvim-autopairs = { };
     surround = { };
@@ -135,8 +131,8 @@ enablePkgs: pkgs:
   };
   colorschemes = enablePkgs {
     nord = {
-      # disable_background = true; 
-      italic = false;
+      
     };
   };
 }
+

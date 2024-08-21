@@ -5,6 +5,7 @@ const RULES = [
   { pattern: /(?:^|\.)figma\.com$/, proxy: "ioaPac" },
 
   { pattern: /(?:^|\.)openai\.com$/, proxy: "clash" },
+  { pattern: /(?:^|\.)chatgpt\.com$/, proxy: "clash" },
   { pattern: /(?:^|\.)sentry\.io$/, proxy: "clash" },
   { pattern: /(?:^|\.)auth0\.com$/, proxy: "clash" },
   { pattern: /(?:^|\.)bing\.com$/, proxy: "clash" },
@@ -31,13 +32,14 @@ const RULES = [
   { pattern: /(?:^|\.)tencent-cloud\./, proxy: "whistle" },
   { pattern: /(?:^|\.)cloud\.tencent\./, proxy: "whistle" },
   { pattern: /(?:^|\.)cloudcachetci\.com$/, proxy: "whistle" },
+  { pattern: /(?:^|\.)microsoft\.com$/, proxy: "clash" },
   { pattern: /^cloudcache\.tencent.*\./, proxy: "whistle" },
   { pattern: /^imgcache\.qq\./, proxy: "whistle" },
 ];
 
 const DEFAULT_PROFILE_NAME = "autoSwitch";
 
-const FALLBACK_PROFILE_NAME = "ioaPac";
+const FALLBACK_PROFILE_NAME = "clash";
 
 const proxyProfiles = {
   autoSwitch: (url, host, scheme) => {

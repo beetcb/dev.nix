@@ -93,6 +93,7 @@ rec {
     jless
     as-tree
     yarn
+    imagemagick
 
     # pkgs need manually setup, and not configurable by using home-manager
     ## see -> https://github.com/NixOS/nixpkgs/pull/217233#issuecomment-1487646724
@@ -134,6 +135,7 @@ rec {
 
     # VOLTA JS Launcher
     VOLTA_HOME = "$HOME/.volta";
+    NPM_CONFIG_REGISTRY = "https://mirrors.tencent.com/npm/";
   };
 
   home.stateVersion = "23.05";

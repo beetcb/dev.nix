@@ -34,9 +34,9 @@
       dock = {
         autohide = true;
         wvous-bl-corner = 4;
-        wvous-br-corner = 1;
+        wvous-br-corner = 3;
         wvous-tl-corner = 3;
-        wvous-tr-corner = 1;
+        wvous-tr-corner = 2;
       };
       finder = {
         ShowPathbar = true;
@@ -79,6 +79,7 @@
       "licecap"
       "visual-studio-code"
       "obsidian"
+      "orbstack"
     ];
     masApps = {
       "wecom-business-im-work-tools" = 1189898970;
