@@ -86,7 +86,9 @@ rec {
   home.username = user.name;
   home.homeDirectory = user.home;
   home.packages = with pkgs; [
+    nixpkgs-fmt
     nixvimPkg
+
     fd
     gh
     ripgrep
@@ -103,6 +105,25 @@ rec {
 
     # overlays
     npm_whistle
+
+      # Rust 开发环境
+      rustup
+  # rustc
+  # cargo
+  # rustfmt
+  # rust-analyzer
+  # pkg-config
+  # openssl
+  # libiconv
+
+  # # WebAssembly 支持
+  # wasm-pack
+  # rustc-wasm32
+
+  # # 编译工具
+  # # gcc
+  # llvmPackages.bintools
+
   ];
 
   home.shellAliases = {
@@ -136,6 +157,8 @@ rec {
     # VOLTA JS Launcher
     VOLTA_HOME = "$HOME/.volta";
     NPM_CONFIG_REGISTRY = "https://mirrors.tencent.com/npm/";
+
+    PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig:$PKG_CONFIG_PATH";
   };
 
   home.stateVersion = "23.05";

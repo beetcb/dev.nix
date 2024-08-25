@@ -18,6 +18,9 @@ enablePkgs: pkgs:
     # background = "light";
   };
   plugins = enablePkgs {
+    which-key = {
+      enable = true;
+    };
     # Autocompletion
     cmp = {
       autoEnableSources = true;
@@ -63,14 +66,16 @@ enablePkgs: pkgs:
       servers = enablePkgs {
         gopls = { };
         # rnix-lsp = { };
-        # rust-analyzer = { };
+        rust-analyzer = { };
         html = { };
         cssls = { };
         eslint = { };
         tsserver = { };
-        # lua-ls = { };
+        lua-ls = { };
         jsonls = { };
         efm = {};
+
+        rnix-lsp = { }; 
       };
       onAttach = ''
         -- Enable completion triggered by <c-x><c-o>

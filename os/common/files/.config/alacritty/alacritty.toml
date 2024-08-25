@@ -1,0 +1,18 @@
+[font]
+size = 14
+
+[font.normal]
+family = "Hack Nerd Font"
+
+[[keyboard.bindings]]
+action = "CreateNewWindow"
+key = "Return"
+mods = "Command"
+
+[window]
+decorations = "full"
+opacity = 1
+
+[window.padding]
+x = 12
+y = 8
