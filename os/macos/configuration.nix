@@ -22,6 +22,7 @@
   };
 
   system = {
+    stateVersion = 4;
     defaults = {
       NSGlobalDomain = {
         AppleInterfaceStyle = "Dark";

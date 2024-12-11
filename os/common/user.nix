@@ -4,12 +4,12 @@ user:
 with builtins;
 
 let
-  nixvimPkg = (nixvim.legacyPackages.${pkgs.system}.makeNixvimWithModule {
-    inherit pkgs;
-    module = {
-      config = (import ../common/files/.config/nvim/nixvim.nix) enablePkgs pkgs;
-    };
-  });
+  # nixvimPkg = (nixvim.legacyPackages.${pkgs.system}.makeNixvimWithModule {
+  #   inherit pkgs;
+  #   module = {
+  #     config = (import ../common/files/.config/nvim/nixvim.nix) enablePkgs pkgs;
+  #   };
+  # });
 in
 rec {
   programs = enablePkgs {
@@ -86,8 +86,9 @@ rec {
   home.username = user.name;
   home.homeDirectory = user.home;
   home.packages = with pkgs; [
+    neovim
     nixpkgs-fmt
-    nixvimPkg
+    # nixvimPkg
 
     fd
     gh

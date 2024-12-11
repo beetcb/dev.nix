@@ -11,18 +11,18 @@
   };
 
   fonts = {
-    fontDir.enable = true;
-    fonts = with pkgs; [
-      (nerdfonts.override {
-        fonts = [ "Hack" ];
-      })
-    ];
+    # fontDir.enable = true;
+    # packages = with pkgs; [
+    #   (nerdfonts.override {
+    #     fonts = [ "Hack" ];
+    #   })
+    # ];
   };
 
   environment =
     {
       shells = [ pkgs.fish pkgs.bash ];
-      loginShell = pkgs.fish;
+      # loginShell = pkgs.fish;
       systemPackages =
         with pkgs; [
           alacritty

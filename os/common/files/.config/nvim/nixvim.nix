@@ -75,7 +75,7 @@ enablePkgs: pkgs:
         jsonls = { };
         efm = {};
 
-        rnix-lsp = { }; 
+        # rnix-lsp = { }; 
       };
       onAttach = ''
         -- Enable completion triggered by <c-x><c-o>

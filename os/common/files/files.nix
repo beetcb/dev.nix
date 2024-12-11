@@ -12,4 +12,8 @@
     source = ./.config/ibus;
     recursive = true;
   };
+  ".config/nvim" = {
+    source = ./.config/nvim;
+    recursive = true;
+  };
 }
