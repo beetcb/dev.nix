@@ -1,9 +1,6 @@
 // pac file ref see -> https://en.wikipedia.org/wiki/Proxy_auto-config#:~:text=A%20proxy%20auto%2Dconfig%20(PAC,for%20fetching%20a%20given%20URL.
 
 const RULES = [
-  { pattern: /^passport\.woa\.com$/, proxy: "ioaPac" },
-  { pattern: /(?:^|\.)figma\.com$/, proxy: "ioaPac" },
-
   { pattern: /(?:^|\.)openai\.com$/, proxy: "clash" },
   { pattern: /(?:^|\.)chatgpt\.com$/, proxy: "clash" },
   { pattern: /(?:^|\.)sentry\.io$/, proxy: "clash" },
@@ -24,6 +21,9 @@ const RULES = [
   { pattern: /^npmjs\.com$/, proxy: "clash" },
   { pattern: /^devinai\.ai$/, proxy: "clash" },
   { pattern: /^crushon\.ai$/, proxy: "clash" },
+  { pattern: /(?:^|\.)microsoft\.com$/, proxy: "clash" },
+  { pattern: /(?:^|\.)aka\.ms$/, proxy: "clash" },
+  { pattern: /(?:^|\.)openrouter\.ai$/, proxy: "clash" },
 
   { pattern: /(?:^|\.)tencent\.com$/, proxy: "whistle" },
   { pattern: /(?:^|\.)w?oa\.com$/, proxy: "whistle" },
@@ -32,21 +32,22 @@ const RULES = [
   { pattern: /(?:^|\.)tencent-cloud\./, proxy: "whistle" },
   { pattern: /(?:^|\.)cloud\.tencent\./, proxy: "whistle" },
   { pattern: /(?:^|\.)cloudcachetci\.com$/, proxy: "whistle" },
-  { pattern: /(?:^|\.)microsoft\.com$/, proxy: "clash" },
   { pattern: /^cloudcache\.tencent.*\./, proxy: "whistle" },
   { pattern: /^imgcache\.qq\./, proxy: "whistle" },
+  { pattern: /(?:^|\.)tencentcos\.cn$/, proxy: "whistle" },
+  { pattern: /^passport\.woa\.com$/, proxy: "whistle" },
+  { pattern: /(?:^|\.)figma\.com$/, proxy: "whistle" },
 ];
 
-const DEFAULT_PROFILE_NAME = "autoSwitch";
-
-const FALLBACK_PROFILE_NAME = "clash";
+const FALLBACK_PROFILE_NAME = "ioaPac";
 
 const proxyProfiles = {
   autoSwitch: (url, host, scheme) => {
     if (
       /^127\.0\.0\.1$/.test(host) ||
       /^::1$/.test(host) ||
-      /^localhost$/.test(host)
+      /^localhost$/.test(host) ||
+      scheme === "file"
     ) {
       return "DIRECT";
     }
@@ -63,7 +64,12 @@ const proxyProfiles = {
   whistle: () => "PROXY 127.0.0.1:8899",
 };
 
+const DEFAULT_PROFILE_NAME = "autoSwitch";
+
 function FindProxyForURL(url, host) {
   const urlScheme = url.substr(0, url.indexOf(":"));
+  if (!urlScheme) {
+    return "DIRECT";
+  }
   return proxyProfiles[DEFAULT_PROFILE_NAME](url, host, urlScheme);
 }

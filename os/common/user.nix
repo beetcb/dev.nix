@@ -13,6 +13,7 @@ let
 in
 rec {
   programs = enablePkgs {
+    direnv = {};
     git = {
       userName = user.gitUsername or user.name;
       userEmail = user.email;
@@ -62,6 +63,10 @@ rec {
           sudo rm -f "/nix/var/nix/gcroots/auto/*" &&
           sudo nix-collect-garbage -d && 
           os-rebuild
+        '';
+
+        set-pac-proxy = ''
+          networksetup -setautoproxyurl "Wi-Fi" "http://127.0.0.1:7891/proxy.pac.js"
         '';
       };
     };
@@ -133,7 +138,7 @@ rec {
     # cd = "z";
     cat = "bat";
     git = "${pkgs.git}/bin/git";
-    poweron = "w2 start && miniserve .config/miniserve/hostdir --port 7891";
+    poweron = "w2 start && miniserve ~/.config/miniserve/hostdir --port 7891";
   };
 
   home.sessionPath = [
